@@ -1,8 +1,8 @@
 {
-  "name": "revogrid-number",
+  "name": "@revolist/revogrid-number",
   "version": "1.0.0",
   "description": "Number column type for RevoGrid system",
-  "main": "dist/webpack-numbers.js",
+  "main": "dist/revogrid-number.js",
   "scripts": {
     "build": "webpack --config webpack.config.js"
   },
