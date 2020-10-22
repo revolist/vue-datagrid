@@ -1,12 +1,16 @@
 const path = require('path');
 
+let libraryName = 'index';
 module.exports = {
-  entry: './src/index.ts',
+  entry: {
+    [libraryName]: './src/index.ts'
+  },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'revogrid-number.js',
-    library: 'revogridNumber',
+    filename: '[name].js',
+    library: libraryName,
     libraryTarget: 'umd',
+    umdNamedDefine: true
   },
   externals: {
     numbro: 'numbro',

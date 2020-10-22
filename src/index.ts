@@ -17,31 +17,19 @@ export default class NumberColumnType {
             this.numbroNumberFormat = numbroNumberFormat;
         }
     }
-    columnProperties(): RevoGrid.CellProps {
-        return {
-            class: {
-                ['align-center']: true
-            }
-        };
-    }
+    columnProperties = (): RevoGrid.CellProps => ({ class: { ['align-center']: true }});
 
-    cellProperties(): RevoGrid.CellProps {
-        return {
-            class: {
-                ['align-right']: true
-            }
-        };
-    }
+    cellProperties = (): RevoGrid.CellProps => ({ class: { ['align-right']: true } });
 
     formated(val: number): string {
         return Numbro(val).format(this.numbroNumberFormat)
     }
 
-    cellTemplate(_h: RevoGrid.HyperFunc<VNode>, p: RevoGrid.ColumnDataSchemaModel): string {
+    cellTemplate = (_h: RevoGrid.HyperFunc<VNode>, p: RevoGrid.ColumnDataSchemaModel): string => {
         const parsed = parseInt(p.model[p.prop], 10);
         if (isNaN(parsed)) {
             return '';
         }
         return this.formated(parsed);
-    }
+    };
 }
