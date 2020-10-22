@@ -3,7 +3,7 @@
     "outDir": "./dist/",
     "allowSyntheticDefaultImports": true,
     "allowUnreachableCode": false,
-    "declaration": false,
+    "declaration": true,
     "experimentalDecorators": true,
     "lib": [
       "dom",
