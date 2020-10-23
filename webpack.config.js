@@ -13,7 +13,7 @@ module.exports = {
     umdNamedDefine: true
   },
   externals: {
-    numbro: 'numbro',
+    vue: 'vue',
   },
   resolve: {
     extensions: [ '.tsx', '.ts', '.js' ],

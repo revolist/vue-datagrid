@@ -1,40 +1,40 @@
-import { RevoGrid } from '@revolist/revogrid/dist/types/interfaces';
-import { VNode } from '@revolist/revogrid/dist/types/stencil-public-runtime';
-import numeral from 'numeral';
+import Vue from 'vue';
+import RevoGrid from '@revolist/revogrid';
 
-const defaultFormat: string = '0,0[.]00';
+type Prop = keyof RevoGrid.Components.RevoGrid;
+type Grid = RevoGrid.Components.RevoGrid;
+type WatchFunction = (this: Vue, newVal: any, oldVal: any) => void;
+type WatchResult = {[prop: string]: WatchFunction; }
 
-export default class NumberColumnType {
-    private readonly numberFormat: string;
-    constructor(format?: string, private emiter?: (event: string, instance: Numeral) => void) {
-        if (!format) {
-            this.numberFormat = defaultFormat;
-        } else {
-            this.numberFormat = format;
-        }
-    }
-    columnProperties = (): RevoGrid.CellProps => ({ class: { ['align-center']: true }});
+Vue.config.ignoredElements = [/revo-\w*/]; // Set ignore web-component and avoid parsing it as vuejs
 
-    cellProperties = (): RevoGrid.CellProps => ({ class: { ['align-right']: true } });
+const props: (keyof RevoGrid.Components.RevoGrid)[]  = ['canFocus', 'colSize', 'columns', 'editors', 'frameSize', 'pinnedBottomSource', 'pinnedTopSource', 'range',
+    'readonly', 'refresh', 'resize', 'rowClass', 'rowSize', 'source', 'theme'];
 
-    cellTemplate = (_h: RevoGrid.HyperFunc<VNode>, p: RevoGrid.ColumnDataSchemaModel): string => {
-        const parsed = parseFloat(p.model[p.prop]);
-        if (isNaN(parsed)) {
-            return '';
-        }
-        return this.formated(parsed);
-    };
-
-    formated(val: number): string {
-        const num = numeral(val);
-        if (this.emiter) {
-            this.emiter('beforeValueFormatted', num);
-        }
-        return num.format(this.numberFormat)
-    }
-    
-    /** Get numeral instance in case you don't want to add any in your project */
-    static getNumeralInstance(): Numeral {
-        return numeral;
-    }
-}
+export default Vue.extend({
+    name: 'data-grid',
+    props,
+    data() {
+        return {
+            asc: true
+        };
+    },
+    watch: props.reduce((res: WatchResult, p: Prop) => {
+        const watchFunc = function(this: Vue, newVal: any) {
+            const grid = this.$refs.grid as unknown as Grid;
+            grid[p] = newVal as never;
+        };
+        res[p] = watchFunc;
+        return res;
+      }, {}
+    ),
+    render(createElement) {
+        return createElement(
+            'revo-grid',
+            {
+              ref: 'grid',
+              domProps: this.$props
+            },
+        );
+    },
+})
