@@ -1,22 +1,22 @@
 {
-  "name": "@revolist/revogrid-number",
-  "version": "1.0.4",
-  "description": "Number column type for RevoGrid system",
+  "name": "@revolist/revogrid-column-numeral",
+  "version": "1.0.1",
+  "description": "Number column type for RevoGrid system based on numeraljs",
   "main": "dist/index.js",
   "scripts": {
     "build": "webpack --config webpack.config.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/revolist/revogrid-number.git"
+    "url": "git+https://github.com/revolist/revogrid-column-numeral.git"
   },
   "keywords": [],
   "author": "revolist",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/revolist/revogrid-number/issues"
+    "url": "https://github.com/revolist/revogrid-column-numeral/issues"
   },
-  "homepage": "https://github.com/revolist/revogrid-number#readme",
+  "homepage": "https://github.com/revolist/revogrid-column-numeral#readme",
   "devDependencies": {
     "@revolist/revogrid": "^1.7.0",
     "eslint": "^3.9.1",
@@ -27,6 +27,7 @@
     "webpack-cli": "^4.1.0"
   },
   "dependencies": {
-    "numbro": "^2.3.1"
+    "@types/numeral": "0.0.28",
+    "numeral": "^2.0.6"
   }
 }
