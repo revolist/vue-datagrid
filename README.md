@@ -3,6 +3,12 @@ Number column type for RevoGrid system based on [numeraljs](http://numeraljs.com
 
 Use any format you love to assign number format for your grid.
 
+## Installation
+
+```
+npm i @revolist/revogrid-column-numeral
+```
+
 ## Output
 
 ### Number
