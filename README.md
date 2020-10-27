@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://revolist.github.io/revogrid">
-    <img src="./assets/logo.svg" alt="RevoGrid" height="150" />
+    <img src="https://raw.githubusercontent.com/revolist/revogrid/master/assets/logo.svg" alt="RevoGrid" height="150" />
   </a>
 </p>
 
