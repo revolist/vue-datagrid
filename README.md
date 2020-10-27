@@ -1,0 +1,92 @@
+<p align="center">
+  <a href="https://revolist.github.io/revogrid">
+    <img src="./assets/logo.svg" alt="RevoGrid" height="150" />
+  </a>
+</p>
+
+##
+<p align="center">
+  <a href="https://www.npmjs.com/package/@revolist/revogrid"><img src="https://img.shields.io/npm/v/@revolist/revogrid" alt="Latest Version on NPM"/></a>
+  <a href="https://github.com/revolist/revogrid/blob/master/LICENSE"><img src="https://img.shields.io/npm/l/@revolist/revogrid" alt="Software License"/></a>
+</p>
+<h4 align="center">Powerful data grid component built on top of <a href="https://github.com/revolist/revogrid" target="_blank">RevoGrid</a>.</h4>
+<p align="center">
+Millions of cells and thousands columns easy and efficiently. Any major framework or with no framework at all.
+  
+</p>
+
+<p align="center">
+  <a href="https://revolist.github.io/revogrid">Demo and API</a> •
+  <a href="#key-features">Key Features</a> •
+  <a href="#basic-usage">How To Use</a> •
+  <a href="#installation">Installation</a> •
+  <a href="https://github.com/revolist/revogrid/blob/master/src/components/revo-grid/readme.md">Docs</a> •
+  <a href="#license">License</a>
+</p>
+
+<img src="./assets/material.jpg" alt="Material grid preview" width="100%" />
+
+<br>
+
+
+## Key Features
+
+- Millions of cells virtual viewport scroll with a powerful core is in-build by default. 
+  Intelligent Virtual DOM and smart row recombination in order to achieve less redraws;
+- Column and Row custom sizes;
+- Column resizing;
+- Pinned columns (columns are always on the left or on the right of the screen);
+- Pinned row (rows are always at the top or at the bottom);
+- Column grouping;
+- Cell editing;
+- Custom header renderer;
+- Custom cell renderer templates (build your own cell view);
+- Custom cell editor (apply your own editors and cell types);
+- Custom cell properties;
+- Drag and drop rows;
+- Column sorting;
+- Range selection;
+- Range edit;
+- Theme packages: Excel like, material, etc;
+- Copy/Paste: Copy/paste from Excel, Google Sheets or any other sheet format;
+- Easy extenation and support with modern VNode features and tsx support;
+- Hundred small customizations and improvements [RevoGrid](https://revolist.github.io/revogrid).
+
+
+## Overview
+
+The RevoGrid component helps represent a huge amount of data in a form of data table "excel like" or as list.
+<br>
+![Chrome](https://raw.github.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png) | ![Firefox](https://raw.github.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png) | ![Safari](https://raw.github.com/alrra/browser-logos/master/src/safari/safari_48x48.png) | ![Opera](https://raw.github.com/alrra/browser-logos/master/src/opera/opera_48x48.png) | ![Edge](https://raw.github.com/alrra/browser-logos/master/src/edge/edge_48x48.png) |
+--- | --- | --- | --- | --- |
+Latest ✔ | Latest ✔ | Latest ✔ | Latest ✔ | Latest ✔ |
+
+
+## Installation
+
+The library published as a [scoped NPM package](https://docs.npmjs.com/misc/scope) in the [NPMJS Revolist account](https://www.npmjs.com/org/revolist).
+[Check for more info on our demo side](https://revolist.github.io/revogrid/guide/installing.html).
+
+With NPM:
+```bash
+npm i @revolist/vue-datagrid --save;
+```
+
+With Yarn:
+
+```bash
+yarn add @revolist/vue-datagrid;
+```
+
+
+## Contributing
+
+If you have any idea, feel free to open an issue to discuss a new feature, or fork RevoGrid and submit your changes back to me.
+
+
+## License
+
+MIT
+
+---
+
