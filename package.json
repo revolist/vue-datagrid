@@ -23,7 +23,7 @@
   },
   "homepage": "https://github.com/revolist/vue-datagrid#readme",
   "devDependencies": {
-    "@revolist/revogrid": "^1.7.0",
+    "@revolist/revogrid": "^1.7.3",
     "eslint": "^3.9.1",
     "eslint-loader": "^1.6.1",
     "ts-loader": "^8.0.6",
