@@ -1,9 +1,9 @@
 const path = require('path');
 
-let libraryName = 'v-grid';
+let libraryName = 'vgrid';
 module.exports = {
   entry: {
-    [libraryName]: './src/index.ts'
+    [libraryName]: './src/vgrid.ts'
   },
   output: {
     path: path.resolve(__dirname, '../dist'),

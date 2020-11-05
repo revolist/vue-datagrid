@@ -1,38 +1,40 @@
-import Vue, { CreateElement, VNode } from 'vue';
-import RevoGrid from '@revolist/revogrid';
+import { Component } from "vue";
+import * as loader from '@revolist/revogrid/loader';
+import vueGrid from './component';
+import { AsyncComponent } from "vue/types/options";
 
-type Prop = keyof RevoGrid.Components.RevoGrid;
-type Grid = RevoGrid.Components.RevoGrid;
-type WatchFunction = (this: Vue, newVal: any, oldVal: any) => void;
-type WatchResult = {[prop: string]: WatchFunction; }
-
-const props: (keyof RevoGrid.Components.RevoGrid)[]  = [
-    'canFocus', 'colSize', 'columns', 'editors', 'frameSize', 'pinnedBottomSource', 'pinnedTopSource', 'range',
-    'readonly', 'refresh', 'resize', 'rowClass', 'rowSize', 'source', 'theme'];
-
-export default {
-    name: 'vue-data-grid',
-    props,
-    watch: props.reduce((res: WatchResult, p: Prop) => {
-        const watchFunc = function(this: Vue, newVal: any) {
-            const grid = this.$refs.grid as unknown as Grid;
-            grid[p] = newVal as never;
-        };
-        res[p] = watchFunc;
-        return res;
-      }, {}
-    ),
-    render(this: Vue, createElement: CreateElement): VNode {
-        return createElement(
-            'revo-grid',
-            {
-                tag: 'revo-grid',
-                ref: 'grid',
-                domProps: this.$props,
-                on: {
-                    ...this.$listeners
-                }
-            },
-        );
-    },
+export const VGrid: AsyncComponent = (resolve: (c: Component) => void, reject: () => void) => {
+  if (loader?.defineCustomElements) {
+    loader?.defineCustomElements()
+      .then(() => resolve(vueGrid))
+      .catch(reject);
+      return;
+  }
+  resolve(vueGrid);
+  return;
 };
+
+let installed = false;
+
+function install (Vue: any) {
+  if (installed) {
+    return;
+  }
+  installed = true;
+  Vue.component('vue-data-grid', VGrid);
+}
+export const VGridPlugin = {
+  install
+};
+
+// Auto-install
+let GlobalVue = null
+if (typeof window !== 'undefined') {
+  GlobalVue = window.Vue
+} else if (typeof global !== 'undefined') {
+  GlobalVue = global.Vue
+}
+if (GlobalVue) {
+  GlobalVue.use(VGridPlugin)
+}
+export default VGrid;
