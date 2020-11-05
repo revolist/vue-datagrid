@@ -1,15 +1,17 @@
 import { Component } from "vue";
 import * as loader from '@revolist/revogrid/loader';
 import vueGrid from './vgrid';
+import { AsyncComponent } from "vue/types/options";
 
-export const VGrid = function(resolve: (c: Component) => void, reject: () => void) {
+export const VGrid: AsyncComponent = (resolve: (c: Component) => void, reject: () => void) => {
   if (loader?.defineCustomElements) {
     loader?.defineCustomElements()
       .then(() => resolve(vueGrid))
       .catch(reject);
-    return;
+      return;
   }
   resolve(vueGrid);
+  return;
 };
 
 let installed = false;
