@@ -1,46 +1,38 @@
-import Vue from 'vue';
-import RevoGrid from '@revolist/revogrid';
-import { defineCustomElements } from '@revolist/revogrid/loader';
+import { Component } from "vue";
+import * as loader from '@revolist/revogrid/loader';
+import vueGrid from './vgrid';
 
-type Prop = keyof RevoGrid.Components.RevoGrid;
-type Grid = RevoGrid.Components.RevoGrid;
-type WatchFunction = (this: Vue, newVal: any, oldVal: any) => void;
-type WatchResult = {[prop: string]: WatchFunction; }
+export const VGrid = function(resolve: (c: Component) => void, reject: () => void) {
+  if (loader?.defineCustomElements) {
+    loader?.defineCustomElements()
+      .then(() => resolve(vueGrid))
+      .catch(reject);
+    return;
+  }
+  resolve(vueGrid);
+};
 
-Vue.config.ignoredElements = [/revo-\w*/]; // Set ignore web-component and avoid parsing it as vuejs
-defineCustomElements();
+let installed = false;
 
-const props: (keyof RevoGrid.Components.RevoGrid)[]  = [
-    'canFocus', 'colSize', 'columns', 'editors', 'frameSize', 'pinnedBottomSource', 'pinnedTopSource', 'range',
-    'readonly', 'refresh', 'resize', 'rowClass', 'rowSize', 'source', 'theme'];
+function install (Vue: any) {
+  if (installed) {
+    return;
+  }
+  installed = true;
+  Vue.component('vue-data-grid', VGrid);
+}
+export const VGridPlugin = {
+  install
+};
 
-export default Vue.extend({
-    name: 'vue-data-grid',
-    props,
-    data() {
-        return {
-            asc: true
-        };
-    },
-    watch: props.reduce((res: WatchResult, p: Prop) => {
-        const watchFunc = function(this: Vue, newVal: any) {
-            const grid = this.$refs.grid as unknown as Grid;
-            grid[p] = newVal as never;
-        };
-        res[p] = watchFunc;
-        return res;
-      }, {}
-    ),
-    render(createElement) {
-        return createElement(
-            'revo-grid',
-            {
-              ref: 'grid',
-              domProps: this.$props,
-              on: {
-                ...this.$listeners
-              }
-            },
-        );
-    },
-})
+// Auto-install
+let GlobalVue = null
+if (typeof window !== 'undefined') {
+  GlobalVue = window.Vue
+} else if (typeof global !== 'undefined') {
+  GlobalVue = global.Vue
+}
+if (GlobalVue) {
+  GlobalVue.use(VGridPlugin)
+}
+export default VGrid;

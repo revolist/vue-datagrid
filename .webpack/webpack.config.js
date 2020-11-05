@@ -1,14 +1,14 @@
 const path = require('path');
 
-let libraryName = 'index';
+let libraryName = 'v-grid';
 module.exports = {
   entry: {
     [libraryName]: './src/index.ts'
   },
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, '../dist'),
     filename: '[name].js',
-    library: libraryName,
+    library: 'VGrid',
     libraryTarget: 'umd',
     umdNamedDefine: true
   },
