@@ -18,21 +18,22 @@ Millions of cells and thousands columns easy and efficiently. Any major framewor
 <p align="center">
   <a href="https://revolist.github.io/revogrid">Demo and API</a> •
   <a href="#key-features">Key Features</a> •
-  <a href="#basic-usage">How To Use</a> •
-  <a href="#installation">Installation</a> •
+  <a href="#how-to-use">How To Use</a> •
   <a href="https://github.com/revolist/revogrid/blob/master/src/components/revo-grid/readme.md">Docs</a> •
   <a href="#license">License</a>
 </p>
 
 <img src="https://raw.githubusercontent.com/revolist/revogrid/master/assets/material.jpg" alt="Material grid preview" width="100%" />
-
+<i>RevoGrid material theme.</i>
 <br>
 
 
 ## Key Features
 
-- Millions of cells virtual viewport scroll with a powerful core is in-build by default. 
-  Intelligent Virtual DOM and smart row recombination in order to achieve less redraws;
+- Millions of cells virtual viewport scroll with a powerful core is in-build by default;
+- Keayboard support;
+- Super light initial starter <img src="https://badgen.net/bundlephobia/min/@revolist/revogrid@latest" alt="Min size"/>. Can be imported with polifill or as module for modern browsers;
+- Intelligent Virtual DOM and smart row recombination in order to achieve less redraws;
 - Column and Row custom sizes;
 - Column resizing;
 - Pinned columns (columns are always on the left or on the right of the screen);
@@ -47,7 +48,7 @@ Millions of cells and thousands columns easy and efficiently. Any major framewor
 - Column sorting;
 - Range selection;
 - Range edit;
-- Theme packages: Excel like, material, etc;
+- Theme packages: Excel like, material, compact, dark or light;
 - Copy/Paste: Copy/paste from Excel, Google Sheets or any other sheet format;
 - Easy extenation and support with modern VNode features and tsx support;
 - Hundred small customizations and improvements [RevoGrid](https://revolist.github.io/revogrid).
@@ -62,10 +63,8 @@ The RevoGrid component helps represent a huge amount of data in a form of data t
 Latest ✔ | Latest ✔ | Latest ✔ | Latest ✔ | Latest ✔ |
 
 
-## Installation
+## How to use
 
-The library published as a [scoped NPM package](https://docs.npmjs.com/misc/scope) in the [NPMJS Revolist account](https://www.npmjs.com/org/revolist).
-[Check for more info on our demo side](https://revolist.github.io/revogrid/guide/installing.html).
 
 With NPM:
 ```bash
@@ -78,15 +77,53 @@ With Yarn:
 yarn add @revolist/vue-datagrid;
 ```
 
+[Sandbox](https://codesandbox.io/s/data-vue-test-3wkzi?file=/src/App.vue)
+```vue
+<template>
+  <div id="app">
+    <v-grid
+      v-if="grid === 1"
+      key="1"
+      theme="compact"
+      :source="rows"
+      :columns="columns"
+    ></v-grid>
+  </div>
+</template>
+
+<script>
+import VGrid from "@revolist/vue-datagrid";
+export default {
+  name: "App",
+  data() {
+    return {
+      columns: [{
+          prop: "name",
+          name: "First",
+        },
+        {
+          prop: "details",
+          name: "Second",
+      }],
+      rows: [{
+        name: "1",
+        details: "Item 1",
+      }]
+    };
+  },
+  components: {
+    VGrid,
+  },
+};
+</script>
+```
 
 ## Contributing
 
-If you have any idea, feel free to open an issue to discuss a new feature, or fork RevoGrid and submit your changes back to me.
+If you have any idea, feel free to open an issue to discuss a new feature and submit your changes back to me.
 
 
 ## License
 
 MIT
-
----
 
