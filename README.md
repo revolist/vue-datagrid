@@ -11,7 +11,7 @@
 </p>
 <h4 align="center">Powerful data grid component built on top of <a href="https://github.com/revolist/revogrid" target="_blank">RevoGrid</a>.</h4>
 <p align="center">
-Millions of cells and thousands columns easy and efficiently. Any major framework or with no framework at all.
+Millions of cells and thousands columns easy and efficiently.
   
 </p>
 
