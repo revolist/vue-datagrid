@@ -8,7 +8,7 @@ type WatchResult = {[prop: string]: WatchFunction; }
 
 const props: (keyof RevoGrid.Components.RevoGrid)[]  = [
     'canFocus', 'colSize', 'columns', 'editors', 'frameSize', 'pinnedBottomSource', 'pinnedTopSource', 'range',
-    'readonly', 'refresh', 'resize', 'rowClass', 'rowSize', 'source', 'theme'];
+    'readonly', 'refresh', 'resize', 'rowClass', 'rowSize', 'source', 'theme', 'rowDefinitions'];
 
 export default {
     name: 'vue-data-grid',
