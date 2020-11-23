@@ -43,6 +43,6 @@
     "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
-    "@revolist/revogrid": "^1.7.5"
+    "@revolist/revogrid": "^1.8.1"
   }
 }
