@@ -36,6 +36,7 @@ Millions of cells and thousands columns easy and efficiently.
 - Intelligent Virtual DOM and smart row recombination in order to achieve less redraws;
 - Column and Row custom sizes;
 - Column resizing;
+- Column auto-size support (content related column size feature);
 - Pinned columns (columns are always on the left or on the right of the screen);
 - Pinned row (rows are always at the top or at the bottom);
 - Column grouping;
@@ -44,6 +45,7 @@ Millions of cells and thousands columns easy and efficiently.
 - Custom cell renderer templates (build your own cell view);
 - Custom cell editor (apply your own editors and cell types);
 - Custom cell properties;
+- [Column types (select, string, number, date, custom)](https://revolist.github.io/revogrid/guide/column.types.html);
 - Drag and drop rows;
 - Column sorting;
 - Range selection;
@@ -52,7 +54,6 @@ Millions of cells and thousands columns easy and efficiently.
 - Copy/Paste: Copy/paste from Excel, Google Sheets or any other sheet format;
 - Easy extenation and support with modern VNode features and tsx support;
 - Hundred small customizations and improvements [RevoGrid](https://revolist.github.io/revogrid).
-
 
 ## Overview
 
