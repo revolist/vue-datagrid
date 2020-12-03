@@ -15,7 +15,7 @@ const vueTemplateConstructor =
                 // if vue inited just update it's properties
                 for (const key in p) {
                     const propKey = key as keyof RevoGrid.ColumnDataSchemaModel;
-                    el.$set(el, propKey, p[propKey]);
+                    el.$props[propKey] = p[propKey];
                 }
                 return;
             }

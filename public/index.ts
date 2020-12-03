@@ -1,6 +1,20 @@
 import './style.css';
 import Vue from 'vue';
-import Grid from '../src/vgrid';
+import Grid, { VGridVueTemplate } from '../src/vgrid';
+
+const NewComponent = Vue.extend({
+  props: ['rowIndex'],
+  render(h) {
+    return h('span', {
+      on: {
+        click: (e: MouseEvent) => {
+          e.stopPropagation();
+          console.log('click');
+        }
+      }
+    }, this.rowIndex);
+  },
+});
 
 function generateHeader(index: number) {
   const asciiFirstLetter = 65;
@@ -15,6 +29,7 @@ function generateHeader(index: number) {
   }
   return label.toLowerCase();
 }
+
 function generateFakeDataObject(rowsNumber: number, colsNumber: number) {
   const result: Record<any, any> = [];
   const columns: Record<number, any> = {};
@@ -29,6 +44,9 @@ function generateFakeDataObject(rowsNumber: number, colsNumber: number) {
           columns[col] = {
               name: generateHeader(col),
               prop: col,
+          };
+          if (col === 1) {
+            columns[col].cellTemplate = VGridVueTemplate(NewComponent);
           }
       }
       result[row][col] = row + ':' + col;
