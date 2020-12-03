@@ -23,7 +23,7 @@ module.exports = {
       title: 'Development',
       template: './public/index.html',
       appMountId: 'app',
-      "exJs": [ "dist/v-grid.js"],
+      "exJs": [ "dist/vgrid.js"],
     }),
   ],
   resolve: {
@@ -35,6 +35,10 @@ module.exports = {
         test: /\.tsx?$/,
         use: 'ts-loader',
         exclude: /node_modules/,
+      },
+      {
+        test: /\.css$/i,
+        use: ['style-loader', 'css-loader'],
       },
     ],
   },

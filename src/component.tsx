@@ -23,17 +23,9 @@ export default {
         return res;
       }, {}
     ),
-    render(this: Vue, createElement: CreateElement): VNode {
-        return createElement(
-            'revo-grid',
-            {
-                tag: 'revo-grid',
-                ref: 'grid',
-                domProps: this.$props,
-                on: {
-                    ...this.$listeners
-                }
-            },
-        );
+    render(this: Vue, h: CreateElement): VNode {
+        return <revo-grid ref='grid' domProps={this.$props} on={{
+            ...this.$listeners
+        }}/>;
     },
 };
