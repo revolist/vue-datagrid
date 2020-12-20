@@ -2,7 +2,8 @@ import { Component } from "vue";
 import * as loader from '@revolist/revogrid/loader';
 import vueGrid from './component';
 import { AsyncComponent } from "vue/types/options";
-import vueTemplate from "./vue-template";
+import vueTemplate, {vueTemplateConstructor} from "./vue-template";
+import vueEditor from "./vue-editor";
 
 export const VGrid: AsyncComponent = (resolve: (c: Component) => void, reject: () => void) => {
   if (loader?.defineCustomElements) {
@@ -30,6 +31,12 @@ export const VGridPlugin = {
 
 // Vue template wrapper for virtual nodes
 export const VGridVueTemplate = vueTemplate;
+
+// Vue adapter to convert vue component into VNode
+export const VGridVueTemplateConstructor = vueTemplateConstructor;
+
+// Vue editor wrapper
+export const VGridVueEditor = vueEditor;
 
 // Auto-install
 let GlobalVue = null

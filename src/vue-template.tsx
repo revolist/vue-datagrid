@@ -1,43 +1,45 @@
 import { RevoGrid } from "@revolist/revogrid/dist/types/interfaces";
 import { VNode } from "@revolist/revogrid/dist/types/stencil-public-runtime";
 import { VueConstructor } from "vue/types/umd";
+
 interface VueElement extends HTMLElement {
     __vue__?: Vue;
 }
-const vueTemplateConstructor =
-    (vueConstructor: VueConstructor, e: HTMLElement, p: RevoGrid.ColumnDataSchemaModel) => {
-        for (const k in e?.childNodes) {
-            // check, probably vue instance already inited
-            const el = (e.childNodes[k] as VueElement).__vue__;
-
-            // if exists, return
-            if (el) {
-                // if vue inited just update it's properties
-                for (const key in p) {
-                    const propKey = key as keyof RevoGrid.ColumnDataSchemaModel;
-                    el.$props[propKey] = p[propKey];
-                }
-                return;
-            }
+export const vueTemplateConstructor =
+    (vueConstructor: VueConstructor, e: HTMLElement, p: Record<string, any>) => {
+        let el: VueElement|undefined;
+        if (e?.childNodes.length) {
+            el = e.childNodes[0] as VueElement;
+        }
+        
+        if (!el) {
+            // create dom element wrapper for vue instance
+            el = document.createElement('span');
+            e.appendChild(el);
         }
 
-        if (e) {
-            // create dom element wrapper for vue instance
-            const el: VueElement = document.createElement('span');
-            e.appendChild(el);
-
+        // check, probably vue instance already inited
+        let vueInstance = el.__vue__;
+        // if exists, return
+        if (vueInstance) {
+            // if vue inited just update it's properties
+            for (const k in p) {
+                vueInstance.$props[k] = p[k];
+            }
+        } else {
             // create vue instance
-            new vueConstructor({
+            console.log(p);
+            vueInstance = new vueConstructor({
                 el,
                 propsData: p,
             });
         }
+        return vueInstance;
     };
 
 const vueTemplate = (vueConstructor: VueConstructor) => {
-    return (h: RevoGrid.HyperFunc<VNode>, p: RevoGrid.ColumnDataSchemaModel) => {
-        return <span ref={(el: HTMLElement) => vueTemplateConstructor(vueConstructor, el, p)}></span>;
-    };
+    return (h: RevoGrid.HyperFunc<VNode>, p: RevoGrid.ColumnDataSchemaModel) =>
+        <span ref={(el: HTMLElement) => vueTemplateConstructor(vueConstructor, el, p)}></span>;
 };
 
 export default vueTemplate;

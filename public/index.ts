@@ -1,6 +1,6 @@
 import './style.css';
 import Vue from 'vue';
-import Grid, { VGridVueTemplate } from '../src/vgrid';
+import Grid, { VGridVueTemplate, VGridVueEditor } from '../src/vgrid';
 
 const NewComponent = Vue.extend({
   props: ['rowIndex'],
@@ -13,6 +13,21 @@ const NewComponent = Vue.extend({
         }
       }
     }, this.rowIndex);
+  },
+});
+
+const NewEditor = Vue.extend({
+  props: ['rowIndex', 'save', 'close'],
+  render(h) {
+    return h('button', {
+      on: {
+        click: (e: MouseEvent) => {
+          e.stopPropagation();
+          this.close();
+          console.log('click', this.rowIndex);
+        }
+      }
+    }, 'I am vue');
   },
 });
 
@@ -45,8 +60,9 @@ function generateFakeDataObject(rowsNumber: number, colsNumber: number) {
               name: generateHeader(col),
               prop: col,
           };
-          if (col === 1) {
+          if (col === 0) {
             columns[col].cellTemplate = VGridVueTemplate(NewComponent);
+            columns[col].editor = 'button';
           }
       }
       result[row][col] = row + ':' + col;
@@ -61,7 +77,8 @@ function generateFakeDataObject(rowsNumber: number, colsNumber: number) {
 new Vue({
   el: '#app',
   data() {
-    return generateFakeDataObject(100, 5);
+    const editor = VGridVueEditor(NewEditor);
+    return { ...generateFakeDataObject(100, 5), gridEditors: { button: editor },};
   },
   components: {
     Grid
@@ -72,6 +89,7 @@ new Vue({
         source: this.$data.source,
         resize: true,
         columns: this.$data.headers,
+        editors: this.$data.gridEditors,
         theme: 'material'
       }
     })]);
