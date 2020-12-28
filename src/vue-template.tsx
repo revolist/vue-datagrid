@@ -28,7 +28,6 @@ export const vueTemplateConstructor =
             }
         } else {
             // create vue instance
-            console.log(p);
             vueInstance = new vueConstructor({
                 el,
                 propsData: p,
