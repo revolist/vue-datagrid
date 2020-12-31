@@ -17,7 +17,7 @@ const NewComponent = Vue.extend({
 });
 
 const NewEditor = Vue.extend({
-  props: ['rowIndex', 'save', 'close'],
+  props: ['rowIndex', 'model', 'save', 'close'],
   render(h) {
     return h('button', {
       on: {
