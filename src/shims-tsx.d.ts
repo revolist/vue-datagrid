@@ -10,11 +10,4 @@ declare global {
       [elem: string]: any;
     }
   }
-
-  interface Window {
-    config: {
-      ServiceRootUrl: string;
-    };
-  }
-
 }

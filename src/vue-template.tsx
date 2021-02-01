@@ -1,6 +1,4 @@
-import { RevoGrid } from "@revolist/revogrid/dist/types/interfaces";
-import { VNode } from "@revolist/revogrid/dist/types/stencil-public-runtime";
-import { VueConstructor } from "vue/types/umd";
+import Vue, { VueConstructor } from 'vue';
 
 interface VueElement extends HTMLElement {
     __vue__?: Vue;
@@ -37,8 +35,7 @@ export const vueTemplateConstructor =
     };
 
 const vueTemplate = (vueConstructor: VueConstructor) => {
-    return (h: RevoGrid.HyperFunc<VNode>, p: RevoGrid.ColumnDataSchemaModel) =>
-        <span ref={(el: HTMLElement) => vueTemplateConstructor(vueConstructor, el, p)}></span>;
+    return (h: Function, p: any) => <span ref={(el: HTMLElement) => vueTemplateConstructor(vueConstructor, el, p)}></span>;
 };
 
 export default vueTemplate;
