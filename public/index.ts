@@ -3,17 +3,10 @@ import Vue from 'vue';
 import Grid, { VGridVueTemplate, VGridVueEditor } from '../src/vgrid';
 
 const NewComponent = Vue.extend({
-  props: ['rowIndex'],
+  props: ['model', 'prop'],
   render(h) {
-    return h('span', {
-      on: {
-        click: (e: MouseEvent) => {
-          e.stopPropagation();
-          console.log('click');
-        }
-      }
-    }, this.rowIndex);
-  },
+    return h('span', null, this.model[this.prop]);
+  }
 });
 
 const NewEditor = Vue.extend({
@@ -57,14 +50,15 @@ function generateFakeDataObject(rowsNumber: number, colsNumber: number) {
       }
       if (!columns[col]) {
           columns[col] = {
-              name: generateHeader(col),
-              prop: col,
+            name: generateHeader(col),
+            prop: col,
           };
           if (col === 0) {
-            columns[col].cellTemplate = VGridVueTemplate(NewComponent);
             columns[col].editor = 'button';
+            columns[col].cellTemplate = VGridVueTemplate(NewComponent);
           }
       }
+      result[row]['key'] = 'key';
       result[row][col] = row + ':' + col;
   }
   let headers = Object.keys(columns).map((k) => columns[parseInt(k, 10)]);
@@ -78,7 +72,7 @@ new Vue({
   el: '#app',
   data() {
     const editor = VGridVueEditor(NewEditor);
-    return { ...generateFakeDataObject(100, 5), gridEditors: { button: editor },};
+    return { ...generateFakeDataObject(1, 100), gridEditors: { button: editor },};
   },
   components: {
     Grid
@@ -90,7 +84,10 @@ new Vue({
         resize: true,
         columns: this.$data.headers,
         editors: this.$data.gridEditors,
-        theme: 'material'
+        theme: 'material',
+        grouping: {
+          // props: ['key']
+        }
       }
     })]);
   }
