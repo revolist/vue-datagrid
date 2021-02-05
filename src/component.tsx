@@ -28,7 +28,8 @@ const props: (keyof RevoGrid.Components.RevoGrid)[]  = [
     'autoSizeColumn',
     'filter', 
     'exporting',
-    'grouping'
+    'grouping',
+    'trimmedRows',
 ];
 
 export default {
