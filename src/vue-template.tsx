@@ -17,7 +17,12 @@ export const vueTemplateConstructor = (vueConstructor: VueConstructor, e: HTMLEl
 		// create dom element wrapper for vue instance
 		el = document.createElement('span');
 		e.appendChild(el);
-			// create vue instance
+
+		// if passed as simple structure convert it to vue object
+		if (typeof vueConstructor === 'object') {
+			vueConstructor = Vue.extend(vueConstructor);
+		}
+		// create vue instance
 		return new vueConstructor({ el, propsData: p, });
 	}
 
