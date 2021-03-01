@@ -50,6 +50,6 @@
     "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
-    "@revolist/revogrid": "^2.9.5"
+    "@revolist/revogrid": "latest"
   }
 }
