@@ -2,16 +2,24 @@
   <button @click="clickTest">Test {{count}}</button>
 </template>
 <script lang="ts">
-import Vue from "vue";
+interface Model {
+  count: number;
+}
+
+import Vue, { PropType } from "vue";
 export default Vue.extend({
-  props: ['rowIndex', 'model'],
+  props: {
+    model: {
+      type: Object as PropType<Model>
+    }
+  },
   computed: {
-    count() {
+    count(): number {
       return this.model.count || 0;
     }
   },
   methods: {
-    clickTest() {
+    clickTest(): void {
       Vue.set(this.model, 'count', this.count + 1);
     }
   }
