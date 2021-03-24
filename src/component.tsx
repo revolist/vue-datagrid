@@ -30,6 +30,7 @@ const props: (keyof RevoGrid.Components.RevoGrid)[]  = [
     'exporting',
     'grouping',
     'trimmedRows',
+    'useClipboard',
 ];
 
 export default {
