@@ -31,9 +31,9 @@ Millions of cells and thousands columns easy and efficiently.
 ## Key Features
 
 - Millions of cells viewport with a powerful core in-build by default;
-- Keayboard support with excel like focus;
+- Keyboard support with excel like focus;
 - Super light initial starter <img src="https://badgen.net/bundlephobia/min/@revolist/revogrid@latest" alt="Min size"/>. Can be imported with polifill or as module for modern browsers;
-- Intelligent Virtual DOM and smart row recombination in order to achieve less redraws;
+- Intelligent Virtual DOM and smart rgRow recombination in order to achieve less redraws;
 - Sorting (multiple options, can be customized per column and advanced with events);
 - Filtering
   - Predefined system filters;
@@ -46,7 +46,9 @@ Millions of cells and thousands columns easy and efficiently.
 - Pinned/Sticky/Freezed:
   - Columns (define left or right);
   - Rows (define top or bottom);
-- Column grouping;
+- Grouping:
+  - Column grouping (Nester headers);
+  - Row grouping (Nested rows);
 - Cell editing;
 - Customizations:
   - Header template;
@@ -70,6 +72,7 @@ Millions of cells and thousands columns easy and efficiently.
 - Easy extenation and support with modern VNode features and tsx support;
 - Trimmed rows (hide rows on demand);
 - Plugin system (create your own plugins or extend existing one, it's transparent and easy);
+- Automated size calculation;
 - Hundred others small customizations and improvements [RevoGrid](https://revolist.github.io/revogrid).
 
 
@@ -100,40 +103,22 @@ yarn add @revolist/vue-datagrid;
 [Sandbox](https://codesandbox.io/s/data-vue-test-3wkzi?file=/src/App.vue)
 ```vue
 <template>
-  <div id="app">
-    <v-grid
-      v-if="grid === 1"
-      key="1"
-      theme="compact"
-      :source="rows"
-      :columns="columns"
-    ></v-grid>
-  </div>
+  <v-grid :source="rows" :columns="columns"/>
 </template>
 
 <script>
-import VGrid from "@revolist/vue-datagrid";
+import VGrid from '@revolist/vue-datagrid';
 export default {
-  name: "App",
-  data() {
-    return {
-      columns: [{
-          prop: "name",
-          name: "First",
-        },
-        {
-          prop: "details",
-          name: "Second",
-      }],
-      rows: [{
-        name: "1",
-        details: "Item 1",
-      }]
+  name: 'App',
+  data() => ({
+      columns: [
+        { prop: 'name', name: 'First' },
+        { prop: 'details', name: 'Second' },
+      ],
+      rows: [{ name: '1', details: 'Item 1' }],
     };
-  },
-  components: {
-    VGrid,
-  },
+  }),
+  components: { VGrid },
 };
 </script>
 ```
