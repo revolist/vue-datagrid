@@ -1,6 +1,6 @@
 <template>
 	<div class="tile large">
-		<grid theme="material" :source="source" resize="true" :columns="headers" :editors="gridEditors"/>
+		<grid theme="material" range="true" :source="source" resize="true" :columns="headers" :editors="gridEditors"/>
 	</div>
 </template>
 
@@ -53,7 +53,9 @@ function generateFakeDataObject(rowsNumber: number, colsNumber: number) {
       let col = j%colsNumber;
       let row = j/colsNumber|0;
       if (!result[row]) {
-          result[row] = {};
+          result[row] = {
+            readonly: true
+          };
       }
       if (!columns[col]) {
           columns[col] = {
@@ -61,6 +63,7 @@ function generateFakeDataObject(rowsNumber: number, colsNumber: number) {
             prop: col,
           };
           if (col === 0) {
+            columns[col].rowDrag = true;
             columns[col].editor = 'button';
             columns[col].cellTemplate = VGridVueTemplate(Cell);
           }
