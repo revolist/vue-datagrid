@@ -30,7 +30,8 @@ const props: (keyof RevoGrid.Components.RevoGrid)[]  = [
   'filter',
   'trimmedRows',
   'exporting',
-  'grouping'
+  'grouping',
+  'stretch',
 ];
 
 export default {
