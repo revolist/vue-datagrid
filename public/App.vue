@@ -1,6 +1,6 @@
 <template>
 	<div class="tile large">
-		<grid theme="material" range="true" :source="source" resize="true" :columns="headers" :editors="gridEditors"/>
+		<grid theme="material" stretch="true" range="true" :source="source" resize="true" :columns="headers" :editors="gridEditors"/>
 	</div>
 </template>
 
@@ -81,7 +81,7 @@ function generateFakeDataObject(rowsNumber: number, colsNumber: number) {
 export default Vue.extend({
 	data() {
     const editor = VGridVueEditor(NewEditor);
-    return { ...generateFakeDataObject(40, 100), gridEditors: { button: editor },};
+    return { ...generateFakeDataObject(40, 1), gridEditors: { button: editor },};
   },
   components: {
     Grid
