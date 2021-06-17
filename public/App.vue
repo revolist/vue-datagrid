@@ -1,6 +1,6 @@
 <template>
 	<div class="tile large">
-		<grid theme="material" stretch="true" range="true" :source="source" resize="true" :columns="headers" :editors="gridEditors"/>
+		<grid :row-headers="rowHeaders" stretch="true" range="true" :source="source" resize="true" :columns="headers" :editors="gridEditors"/>
 	</div>
 </template>
 
@@ -8,13 +8,6 @@
 import Vue from 'vue';
 import Cell from './Cell.vue';
 import Grid, { VGridVueTemplate, VGridVueEditor } from '../src/vgrid';
-/*
-const NewComponent = Vue.extend({
-  props: ['model', 'prop'],
-  render(h) {
-    return h('span', undefined, this.model[this.prop]);
-  }
-}); */
 
 const NewEditor = Vue.extend({
   props: ['rowIndex', 'model', 'save', 'close'],
@@ -81,7 +74,9 @@ function generateFakeDataObject(rowsNumber: number, colsNumber: number) {
 export default Vue.extend({
 	data() {
     const editor = VGridVueEditor(NewEditor);
-    return { ...generateFakeDataObject(40, 1), gridEditors: { button: editor },};
+    return { ...generateFakeDataObject(40, 1), gridEditors: { button: editor }, rowHeaders: {
+      cellTemplate: () => 'a'
+    }};
   },
   components: {
     Grid
