@@ -50,7 +50,7 @@
     "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
-    "@revolist/revogrid": "^3.0.93",
+    "@revolist/revogrid": "^3.0.94",
     "@stencil/core": "^2.6.0"
   }
 }
