@@ -50,9 +50,9 @@
     "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
-    "@stencil/core": "^2.6.0"
+    "@stencil/core": "^2.6.0",
+    "@revolist/revogrid": "~4.0.0-next.0"
   },
   "peerDependencies": {
-    "@revolist/revogrid": "^4.0.0-next.x"
   }
 }
