@@ -1,5 +1,5 @@
 <template>
-  <button @click="clickTest">Test {{count}}</button>
+  <button @click="clickTest">Test {{count + ' Custom Props: ' + temp}}</button>
 </template>
 <script lang="ts">
 interface Model {
@@ -11,7 +11,8 @@ export default Vue.extend({
   props: {
     model: {
       type: Object as PropType<Model>
-    }
+    },
+    temp: Number
   },
   computed: {
     count(): number {

@@ -38,9 +38,10 @@ export const vueTemplateConstructor = (vueConstructor: VueConstructor, e: HTMLEl
 	return vueInstance;
 };
 
-const vueTemplate = (cntr: VueConstructor) => {
+const vueTemplate = (cntr: VueConstructor, customProps?: any) => {
 	return (h: Function, p: any) => {
-		const wrapper = <span ref={(el: HTMLElement) => vueTemplateConstructor(cntr, el, p)}/>;
+		const props = customProps ? {...customProps, ...p} : p
+		const wrapper = <span ref={(el: HTMLElement) => vueTemplateConstructor(cntr, el, props)}/>;
 		return wrapper;
 	};
 };
