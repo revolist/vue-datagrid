@@ -1,6 +1,6 @@
 {
   "name": "@revolist/vue-datagrid",
-  "version": "3.0.97",
+  "version": "3.0.98",
   "description": "Vue data grid spreadsheet",
   "main": "dist/vgrid.js",
   "scripts": {
@@ -50,7 +50,7 @@
     "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
-    "@revolist/revogrid": "^3.0.97",
+    "@revolist/revogrid": "^3.0.98",
     "@stencil/core": "^2.6.0"
   }
 }
