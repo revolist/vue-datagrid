@@ -1,37 +1,36 @@
 import Vue, { CreateElement } from 'vue';
-import RevoGrid from '@revolist/revogrid';
 
-type Prop = keyof RevoGrid.Components.RevoGrid;
-type Grid = RevoGrid.Components.RevoGrid;
+type Prop = any;
 type WatchFunction = (this: Vue, newVal: any, oldVal: any) => void;
 type WatchResult = {[prop: string]: WatchFunction; }
 
 const props: Prop[]  = [
-  'rowHeaders',
-  'frameSize',
-  'rowSize',
-  'colSize',
-  'range',
-  'readonly',
-  'resize',
-  'canFocus',
-  'useClipboard',
-  'columns',
-  'source',
-  'pinnedTopSource',
-  'pinnedBottomSource',
-  'rowDefinitions',
-  'editors',
-  'plugins',
-  'columnTypes',
-  'theme',
-  'rowClass',
-  'autoSizeColumn',
-  'filter',
-  'trimmedRows',
-  'exporting',
-  'grouping',
-  'stretch',
+    'autoSizeColumn',
+    'canFocus',
+    'columns',
+    'columnTypes',
+    'colSize',
+    'editors',
+    'exporting',
+    'filter',
+    'frameSize',
+    'grouping',
+    'merged',
+    'pinnedTopSource',
+    'pinnedBottomSource',
+    'plugins',
+    'range',
+    'readonly',
+    'resize',
+    'rowSize',
+    'rowClass',
+    'rowDefinitions',
+    'rowHeaders',
+    'source',
+    'stretch',
+    'theme',
+    'trimmedRows',
+    'useClipboard',
 ];
 
 const propsKeys: Record<string, any> = {};
@@ -50,10 +49,10 @@ props.forEach(prop => {
     propsExtended.push(p);
 });
 
-const watch = props.reduce((res: WatchResult, p: Prop) => {
+const watch = props.reduce((res: WatchResult, p: any) => {
     const watchFunc = function (this: Vue, newVal: any) {
-        const grid = this.$refs.grid as unknown as Grid;
-        grid[p] = newVal as never;
+        const grid = this.$refs.grid as any;
+        grid[p] = newVal;
     };
     res[p] = watchFunc;
     return res;
