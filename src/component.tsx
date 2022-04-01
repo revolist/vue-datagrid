@@ -1,4 +1,4 @@
-import Vue, { CreateElement } from 'vue';
+import Vue from 'vue';
 
 type Prop = any;
 type WatchFunction = (this: Vue, newVal: any, oldVal: any) => void;
@@ -58,11 +58,11 @@ const watch = props.reduce((res: WatchResult, p: any) => {
     return res;
 }, {});
 
-export default {
+export default Vue.extend({
     name: 'vue-data-grid',
     props: propsExtended,
     watch,
-    render(this: Vue, h: CreateElement) {
+    render(h) {
         const domProps: Record<string, any> = {};
         for (const key in this.$props) {
             domProps[key] = this.$props[key];
@@ -71,4 +71,4 @@ export default {
             ...this.$listeners
         }}/>;
     },
-};
+});
