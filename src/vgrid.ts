@@ -1,5 +1,5 @@
 import { Component } from "vue";
-import { defineCustomElement } from "@revolist/revogrid/custom-element/revo-grid";
+import { defineCustomElements } from '@revolist/revogrid/dist/loader';
 import vueGrid from './component';
 import { AsyncComponent } from "vue/types/options";
 import vueTemplate, {vueTemplateConstructor} from "./vue-template";
@@ -7,8 +7,8 @@ import vueEditor from "./vue-editor";
 
 let isDefined = false;
 export const VGrid: AsyncComponent = (resolve: (c: Component) => void) => {
-  if (!isDefined && defineCustomElement) {
-    defineCustomElement();
+  if (!isDefined && defineCustomElements) {
+    defineCustomElements();
     isDefined = true;
   }
   resolve(vueGrid);

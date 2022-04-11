@@ -1,9 +1,9 @@
 import Vue from 'vue';
+Vue.config.ignoredElements = [/revo-grid\w*/];
 
 type Prop = any;
 type WatchFunction = (this: Vue, newVal: any, oldVal: any) => void;
 type WatchResult = {[prop: string]: WatchFunction; }
-
 const props: Prop[]  = [
     'autoSizeColumn',
     'canFocus',
