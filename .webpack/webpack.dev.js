@@ -24,7 +24,7 @@ module.exports = {
       title: 'Development',
       template: './public/index.html',
       appMountId: 'app',
-      "exJs": [ "dist/vgrid.js"],
+      "exJs": [], // [ "dist/vgrid.js"],
     }),
     new VueLoaderPlugin(),
   ],
