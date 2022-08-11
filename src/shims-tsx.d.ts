@@ -1,4 +1,7 @@
-import Vue, { VNode } from 'vue';
+import {
+  VNode,
+  JSXBase,
+} from '@revolist/revogrid/dist/types/stencil-public-runtime';
 
 declare global {
   namespace JSX {
@@ -6,7 +9,13 @@ declare global {
     interface Element extends VNode {}
     // tslint:disable no-empty-interface
     interface ElementClass extends Vue {}
-    interface IntrinsicElements {
+
+    type NativeElements = {
+      [K in keyof IntrinsicElementAttributes]: JSXBase.DOMAttributes<
+        IntrinsicElementAttributes[K]
+      >;
+    };
+    interface IntrinsicElements extends JSXBase.DOMAttributes {
       [elem: string]: any;
     }
   }

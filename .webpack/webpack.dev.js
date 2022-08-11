@@ -1,7 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const VueLoaderPlugin = require('vue-loader/lib/plugin');
+const VueLoaderPlugin = require('vue-loader');
 
 module.exports = {
   mode: 'development',
@@ -26,7 +26,7 @@ module.exports = {
       appMountId: 'app',
       "exJs": [], // [ "dist/vgrid.js"],
     }),
-    new VueLoaderPlugin(),
+    new VueLoaderPlugin.VueLoaderPlugin(),
   ],
   resolve: {
     extensions: [ '.tsx', '.ts', '.js', '.vue' ],
