@@ -30,6 +30,10 @@
   },
   "homepage": "https://github.com/revolist/vue-datagrid#readme",
   "license": "MIT",
+  "dependencies": {
+    "@revolist/revogrid": "^3.2.0",
+    "@stencil/core": "^2.6.0"
+  },
   "devDependencies": {
     "@vue/compiler-sfc": "^3.2.37",
     "clean-webpack-plugin": "^4.0.0",
@@ -45,9 +49,5 @@
     "webpack": "^5.74.0",
     "webpack-cli": "^4.10.0",
     "webpack-dev-server": "^4.10.0"
-  },
-  "peerDependencies": {
-    "@revolist/revogrid": "^3.2.0",
-    "@stencil/core": "^2.6.0"
   }
 }
