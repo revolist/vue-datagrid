@@ -58,7 +58,9 @@ function generateFakeDataObject(rowsNumber: number, colsNumber: number) {
           if (col === 0) {
             columns[col].rowDrag = true;
             columns[col].editor = 'button';
-            columns[col].cellTemplate = VGridVueTemplate(Cell);
+            columns[col].cellTemplate = VGridVueTemplate(Cell, {
+              temp: 1
+            });
           }
       }
       result[row]['key'] = 'key';

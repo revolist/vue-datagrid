@@ -2,6 +2,7 @@ const path = require('path');
 
 let libraryName = 'vgrid';
 module.exports = {
+  mode: 'production',
   entry: {
     [libraryName]: './src/vgrid.ts'
   },
@@ -13,11 +14,10 @@ module.exports = {
     umdNamedDefine: true
   },
   externals: [
-    {
-      vue: 'vue',
-      '@stencil/core': '@stencil/core'
-    },
-    /^(\@revolist\/revogrid)/i,
+    'vue',
+    '@revolist/revogrid',
+    /^@revolist\/revogrid\//,
+    '@stencil/core',
   ],
   resolve: {
     extensions: [ '.tsx', '.ts', '.js' ],

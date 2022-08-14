@@ -1,5 +1,5 @@
 import { Component } from "vue";
-import { defineCustomElements } from '@revolist/revogrid/dist/loader';
+import { defineCustomElements } from '@revolist/revogrid/loader';
 import vueGrid from './component';
 import { AsyncComponent } from "vue/types/options";
 import vueTemplate, {vueTemplateConstructor} from "./vue-template";
