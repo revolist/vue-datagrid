@@ -1,4 +1,4 @@
-import { RevoGrid as vueGrid} from "./revogrid";
+import vueGrid from "./component";
 import vueTemplate, { vueTemplateConstructor } from "./vue-template";
 import vueEditor from "./vue-editor";
 
