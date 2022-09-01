@@ -1,8 +1,6 @@
-import vueGrid from "./component";
+import { RevoGrid as vueGrid} from "./revogrid";
 import vueTemplate, { vueTemplateConstructor } from "./vue-template";
 import vueEditor from "./vue-editor";
-import Vue from "vue";
-Vue.config.ignoredElements = [/revo-grid\w*/];
 
 let installed = false;
 function install(Vue: any) {
