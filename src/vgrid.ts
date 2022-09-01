@@ -1,9 +1,10 @@
-import { Component } from "vue";
+import Vue, { Component } from "vue";
 import { defineCustomElements } from '@revolist/revogrid/loader';
 import vueGrid from './component';
 import { AsyncComponent } from "vue/types/options";
 import vueTemplate, {vueTemplateConstructor} from "./vue-template";
 import vueEditor from "./vue-editor";
+Vue.config.ignoredElements = [/revo-grid\w*/];
 
 let isDefined = false;
 export const VGrid: AsyncComponent = (resolve: (c: Component) => void) => {

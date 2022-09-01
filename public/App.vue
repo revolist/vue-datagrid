@@ -17,7 +17,6 @@ const NewEditor = Vue.extend({
         click: (e: MouseEvent) => {
           e.stopPropagation();
           this.close();
-          console.log('click', this.rowIndex);
         }
       }
     }, 'I am vue');
