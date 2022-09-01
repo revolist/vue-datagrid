@@ -1,4 +1,5 @@
 import Vue, { CreateElement } from "vue";
+import { RevoGrid as RevoGridComponent } from "@revolist/revogrid/custom-element";
 
 type Prop = any;
 type WatchFunction = (this: Vue, newVal: any, oldVal: any) => void;
@@ -61,6 +62,7 @@ const watch = props.reduce((res: WatchResult, p: Prop) => {
   return res;
 }, {});
 
+export { RevoGridComponent };
 export default {
   name: "vue-data-grid",
   props: propsExtended,
