@@ -3,7 +3,7 @@ import Vue, { VueConstructor } from 'vue';
 interface VueElement extends HTMLElement {
     __vue__?: Vue;
 }
-export const vueTemplateConstructor = (vueConstructor: VueConstructor, e: HTMLElement, p: Record<string, any>) => {
+export const vueTemplateConstructor = (vueConstructor: VueConstructor, e?: HTMLElement, p?: Record<string, any>) => {
 	if (!e) {
 		return null;
 	}
@@ -29,7 +29,7 @@ export const vueTemplateConstructor = (vueConstructor: VueConstructor, e: HTMLEl
 	// check, probably vue instance already inited
 	let vueInstance = el.__vue__;
 	// if exists, return
-	if (vueInstance) {
+	if (vueInstance && p) {
 		// if vue inited just update it's properties
 		for (const k in p) {
 			vueInstance.$props[k] = p[k];
