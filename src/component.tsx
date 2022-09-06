@@ -62,7 +62,7 @@ const watch = props.reduce((res: WatchResult, p: Prop) => {
 }, {});
 
 export { RevoGridComponent };
-export default {
+export default Vue.extend({
   name: "vue-data-grid",
   props: propsExtended,
   watch,
@@ -81,4 +81,4 @@ export default {
       />
     );
   },
-};
+});
