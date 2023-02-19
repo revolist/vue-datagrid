@@ -4,14 +4,14 @@ let libraryName = 'vgrid';
 module.exports = {
   mode: 'production',
   entry: {
-    [libraryName]: './src/vgrid.ts'
+    [libraryName]: './src/vgrid.ts',
   },
   output: {
     path: path.resolve(__dirname, '../dist'),
     filename: '[name].js',
     library: 'VGrid',
     libraryTarget: 'umd',
-    umdNamedDefine: true
+    umdNamedDefine: true,
   },
   externals: [
     'vue',
@@ -20,7 +20,7 @@ module.exports = {
     '@stencil/core',
   ],
   resolve: {
-    extensions: [ '.tsx', '.ts', '.js' ],
+    extensions: ['.tsx', '.ts', '.js'],
   },
   module: {
     rules: [

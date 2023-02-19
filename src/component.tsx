@@ -1,6 +1,5 @@
-import Vue, { CreateElement } from "vue";
-import { RevoGrid as RevoGridComponent } from "@revolist/revogrid/custom-element";
-
+import Vue, { CreateElement } from 'vue';
+import { RevoGrid as RevoGridComponent } from '@revolist/revogrid/custom-element/revo-grid';
 
 type Prop = any;
 type WatchFunction = (this: Vue, newVal: any, oldVal: any) => void;
@@ -33,7 +32,7 @@ const REVOGRID_PROPS = [
   'trimmedRows',
   'exporting',
   'grouping',
-  'stretch'
+  'stretch',
 ];
 
 const propsKeys: Record<string, any> = {};
@@ -47,7 +46,7 @@ REVOGRID_PROPS.forEach((prop) => {
   propsKeys[p] = prop; // lower cased
   propsExtended.push(p);
 
-  p = prop.split(/(?=[A-Z])/).join("-");
+  p = prop.split(/(?=[A-Z])/).join('-');
   propsKeys[p] = prop; // kebab
   propsExtended.push(p);
 });
@@ -63,7 +62,7 @@ const watch = REVOGRID_PROPS.reduce((res: WatchResult, p: Prop) => {
 
 export { RevoGridComponent };
 export default {
-  name: "vue-data-grid",
+  name: 'vue-data-grid',
   props: propsExtended,
   watch,
   render(this: Vue, h: CreateElement) {

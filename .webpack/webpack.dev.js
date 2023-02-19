@@ -6,17 +6,17 @@ const VueLoaderPlugin = require('vue-loader');
 module.exports = {
   mode: 'development',
   entry: {
-    app: './public/index.ts'
+    app: './public/index.ts',
   },
   devtool: 'inline-source-map',
   devServer: {
-    port: 3332
+    port: 3332,
   },
   output: {
     path: path.resolve(__dirname, '../distServe'),
     filename: '[name].js',
     libraryTarget: 'umd',
-    umdNamedDefine: true
+    umdNamedDefine: true,
   },
   plugins: [
     new CleanWebpackPlugin({ cleanStaleWebpackAssets: false }),
@@ -24,22 +24,22 @@ module.exports = {
       title: 'Development',
       template: './public/index.html',
       appMountId: 'app',
-      "exJs": [], // [ "dist/vgrid.js"],
+      exJs: [], // [ "dist/vgrid.js"],
     }),
     new VueLoaderPlugin.VueLoaderPlugin(),
   ],
   resolve: {
-    extensions: [ '.tsx', '.ts', '.js', '.vue' ],
+    extensions: ['.tsx', '.ts', '.js', '.vue'],
     alias: {
-      'vue$': 'vue/dist/vue.esm.js',
-      '@revolist/vue-datagrid': path.resolve(__dirname, '../src/vgrid')
+      vue$: 'vue/dist/vue.esm.js',
+      '@revolist/vue-datagrid': path.resolve(__dirname, '../src/vgrid'),
     },
   },
   module: {
     rules: [
       {
         test: /\.vue$/,
-        loader: 'vue-loader'
+        loader: 'vue-loader',
       },
       {
         test: /\.tsx?$/,
@@ -60,11 +60,11 @@ module.exports = {
           {
             loader: 'css-loader',
             options: {
-              esModule: false
-            }
+              esModule: false,
+            },
           },
-          'sass-loader'
-        ]
+          'sass-loader',
+        ],
       },
     ],
   },
