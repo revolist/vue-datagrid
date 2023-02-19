@@ -3,6 +3,9 @@ import { VNode } from '@revolist/revogrid/dist/types/stencil-public-runtime';
 import { VueConstructor } from 'vue/types/umd';
 import { vueTemplateConstructor } from './vue-template';
 
+/**
+ * Vue editor adapter
+ */
 export default class VueEditorAdapter {
 	public element: Element|null = null;
 	public editCell: Edition.EditCell|null = null;

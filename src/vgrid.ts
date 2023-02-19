@@ -3,7 +3,7 @@ import vueTemplate, { vueTemplateConstructor } from './vue-template';
 import vueEditor from './vue-editor';
 import Vue from 'vue';
 
-
+// ignore custom elements
 Vue.config.ignoredElements = [
   'revo-grid'
 ];
