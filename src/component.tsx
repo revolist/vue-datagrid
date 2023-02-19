@@ -1,5 +1,7 @@
 import Vue, { CreateElement } from 'vue';
 import { RevoGrid as RevoGridComponent } from '@revolist/revogrid/custom-element/revo-grid';
+import { defineCustomElements } from '@revolist/revogrid/custom-element';
+defineCustomElements();
 
 type Prop = any;
 type WatchFunction = (this: Vue, newVal: any, oldVal: any) => void;

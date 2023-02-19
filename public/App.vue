@@ -75,7 +75,7 @@ function generateFakeDataObject(rowsNumber: number, colsNumber: number) {
 export default Vue.extend({
 	data() {
     const editor = VGridVueEditor(NewEditor);
-    return { ...generateFakeDataObject(40, 1), gridEditors: { button: editor }, rowHeaders: {
+    return { ...generateFakeDataObject(40, 2), gridEditors: { button: editor }, rowHeaders: {
       cellTemplate: () => 'a'
     }};
   },
