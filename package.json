@@ -1,6 +1,6 @@
 {
   "name": "@revolist/vue-datagrid",
-  "version": "3.4.0",
+  "version": "3.4.1",
   "description": "Vue data grid spreadsheet",
   "main": "dist/vgrid.js",
   "scripts": {
@@ -31,7 +31,7 @@
   "homepage": "https://github.com/revolist/vue-datagrid#readme",
   "license": "MIT",
   "dependencies": {
-    "@revolist/revogrid": "^3.4.0",
+    "@revolist/revogrid": "^3.4.1",
     "@stencil/core": "^2.17.3"
   },
   "devDependencies": {
