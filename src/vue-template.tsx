@@ -3,6 +3,7 @@ import Vue, { VueConstructor } from 'vue';
 /**
  * Vue template factory
  */
+// TODO: provide passage of vue component to renderers
 interface VueElement extends HTMLElement {
   __vue__?: Vue;
 }

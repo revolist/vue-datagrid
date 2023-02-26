@@ -7,6 +7,7 @@ import VueEditorAdapter from './vue-editor-adapter';
  * @param vueConstructor 
  * @returns 
  */
+// TODO: provide passage of vue component to renderers
 const vueEditor = (vueConstructor: VueConstructor) => {
   return function (
     column: RevoGrid.ColumnDataSchemaModel,

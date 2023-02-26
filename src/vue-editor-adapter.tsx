@@ -6,6 +6,7 @@ import { vueTemplateConstructor } from './vue-template';
 /**
  * Vue editor adapter
  */
+// TODO: provide passage of vue component to renderers
 export default class VueEditorAdapter {
 	public element: Element|null = null;
 	public editCell: Edition.EditCell|null = null;

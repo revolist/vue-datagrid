@@ -22,7 +22,7 @@ const REVOGRID_PROPS = [
   'pinnedBottomSource',
   'rowDefinitions',
   'editors',
-  'applyEditorChangesOnClose',
+  'applyOnClose',
   'plugins',
   'columnTypes',
   'theme',
@@ -72,6 +72,7 @@ export default {
     for (const key in this.$props) {
       domProps[key] = this.$props[key];
     }
+    // TODO: provide passage of vue component to renderers
     return (
       <revo-grid
         ref="grid"
