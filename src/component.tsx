@@ -35,6 +35,7 @@ const REVOGRID_PROPS = [
   'exporting',
   'grouping',
   'stretch',
+  'additionalData'
 ];
 
 const propsKeys: Record<string, any> = {};
@@ -72,6 +73,10 @@ export default {
     for (const key in this.$props) {
       domProps[key] = this.$props[key];
     }
+    if (!domProps.additionalData) {
+      domProps.additionalData = {};
+    }
+    domProps.additionalData.vue = this;
     // TODO: provide passage of vue component to renderers
     return (
       <revo-grid

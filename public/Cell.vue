@@ -16,6 +16,7 @@ export default Vue.extend({
   },
   computed: {
     count(): number {
+      console.log(this.$store);
       return this.model.count || 0;
     }
   },

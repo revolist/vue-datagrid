@@ -10,7 +10,8 @@ interface VueElement extends HTMLElement {
 export const vueTemplateConstructor = (
   vueConstructor: VueConstructor,
   e?: HTMLElement,
-  p?: Record<string, any>
+  p?: Record<string, any>,
+  addition?: { vue: Vue },
 ) => {
   if (!e) {
     return null;
@@ -31,7 +32,7 @@ export const vueTemplateConstructor = (
       vueConstructor = Vue.extend(vueConstructor);
     }
     // create vue instance
-    return new vueConstructor({ el, propsData: p });
+    return new vueConstructor({ el, propsData: p, parent: addition?.vue });
   }
 
   // check, probably vue instance already inited
@@ -47,11 +48,11 @@ export const vueTemplateConstructor = (
 };
 
 const vueTemplate = (cntr: VueConstructor, customProps?: any) => {
-  return (h: Function, p: any) => {
+  return (h: Function, p: any, addition?: any) => {
     const props = customProps ? { ...customProps, ...p } : p;
     const wrapper = (
       <span
-        ref={(el: HTMLElement) => vueTemplateConstructor(cntr, el, props)}
+        ref={(el: HTMLElement) => vueTemplateConstructor(cntr, el, props, addition)}
       />
     );
     return wrapper;
