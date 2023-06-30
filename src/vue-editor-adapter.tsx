@@ -28,11 +28,11 @@ export default class VueEditorAdapter {
 			this.vueEl = undefined;
 	}
 
-	render(h: RevoGrid.HyperFunc<VNode>) {
-		return <span ref={(e: HTMLElement) => this.renderAdapter(e)}/>;
+	render(h: RevoGrid.HyperFunc<VNode>, addition: any) {
+		return <span ref={(e: HTMLElement) => this.renderAdapter(e, addition)}/>;
 	}
 
-	private renderAdapter(el?: HTMLElement) {
+	private renderAdapter(el?: HTMLElement, addition?: any) {
 		if (!el) {
 			return;
 		}
@@ -40,7 +40,7 @@ export default class VueEditorAdapter {
 			...this.editCell,
 			save: this.save,
 			close: this.close
-		});
+		}, addition);
 		if (!template) {
 			return;
 		}

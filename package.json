@@ -1,6 +1,6 @@
 {
   "name": "@revolist/vue-datagrid",
-  "version": "4.4.0-next.1",
+  "version": "4.6.0-next.1",
   "description": "Vue data grid spreadsheet",
   "main": "dist/vgrid.js",
   "scripts": {
@@ -31,6 +31,7 @@
   "homepage": "https://github.com/revolist/vue-datagrid#readme",
   "license": "MIT",
   "devDependencies": {
+    "vuex": "^3.6.2",
     "@vue/compiler-sfc": "^3.2.37",
     "clean-webpack-plugin": "^4.0.0",
     "html-webpack-plugin": "^5.5.1",
@@ -47,10 +48,7 @@
     "webpack-dev-server": "^4.13.3"
   },
   "peerDependencies": {
-    "@revolist/revogrid": "^4.4.0-next.8",
-    "@stencil/core": "^3.2.1"
-  },
-  "dependencies": {
-    "vuex": "^3.6.2"
+    "@revolist/revogrid": "^4.6.0-next.1",
+    "@stencil/core": "^4.0.1"
   }
 }
