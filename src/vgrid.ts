@@ -2,6 +2,9 @@ import vueGrid from "./component";
 import vueTemplate, { vueTemplateConstructor } from "./vue-template";
 import vueEditor from "./vue-editor";
 
+import { defineCustomElements } from "@revolist/revogrid/loader";
+import { AsyncComponent } from "vue";
+
 let installed = false;
 function install(Vue: any) {
   if (installed) {
@@ -14,7 +17,12 @@ export const VGridPlugin = {
   install,
 };
 
-export const VGrid = vueGrid;
+const defined = defineCustomElements();
+export const VGrid: AsyncComponent = async () => {
+  await defined;
+  return vueGrid;
+};
+
 // Vue template wrapper for virtual nodes
 export const VGridVueTemplate = vueTemplate;
 

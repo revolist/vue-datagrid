@@ -1,12 +1,11 @@
 import Vue, { CreateElement } from "vue";
 import RevoGrid from "@revolist/revogrid";
-import { RevoGrid as RevoGridComponent } from "@revolist/revogrid/custom-element";
 
 type Prop = keyof RevoGrid.Components.RevoGrid;
 type Grid = RevoGrid.Components.RevoGrid;
 type WatchFunction = (this: Vue, newVal: any, oldVal: any) => void;
 type WatchResult = { [prop: string]: WatchFunction };
-
+Vue.config.ignoredElements = [/revo-\w*/];
 const props: Prop[] = [
   "rowHeaders",
   "frameSize",
@@ -61,7 +60,6 @@ const watch = props.reduce((res: WatchResult, p: Prop) => {
   return res;
 }, {});
 
-export { RevoGridComponent };
 export default Vue.extend({
   name: "vue-data-grid",
   props: propsExtended,
