@@ -1,16 +1,16 @@
-import { RevoGrid } from '@revolist/revogrid/dist/types/interfaces';
 import { VueConstructor } from 'vue/types/umd';
 import VueEditorAdapter from './vue-editor-adapter';
+import { ColumnDataSchemaModel } from '@revolist/revogrid';
 
 /**
  * Vue editor factory
- * @param vueConstructor 
- * @returns 
+ * @param vueConstructor
+ * @returns
  */
 // TODO: provide passage of vue component to renderers
 const vueEditor = (vueConstructor: VueConstructor) => {
   return function (
-    column: RevoGrid.ColumnDataSchemaModel,
+    column: ColumnDataSchemaModel,
     save: Function,
     close: Function
   ) {
