@@ -1,9 +1,10 @@
 import { VueConstructor } from 'vue/types/umd';
-import VueEditorAdapter from './vue-editor-adapter';
+import VueEditorAdapter from './editor.adapter';
 import { ColumnDataSchemaModel } from '@revolist/revogrid';
 
 /**
- * Vue editor factory
+ * Vue editor wrapper
+ * 
  * @param vueConstructor
  * @returns
  */

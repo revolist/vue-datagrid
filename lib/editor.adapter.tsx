@@ -1,5 +1,5 @@
 import { VueConstructor } from 'vue/types/umd';
-import { vueTemplateConstructor } from './vue-template';
+import { VGridVueTemplateConstructor } from './renderer';
 import {
   ColumnDataSchemaModel,
   EditCell,
@@ -40,7 +40,7 @@ export default class VueEditorAdapter {
     if (!el) {
       return;
     }
-    const template = vueTemplateConstructor(
+    const template = VGridVueTemplateConstructor(
       this.VueEditorConstructor,
       el,
       {

@@ -1,24 +1,47 @@
 {
   "name": "@revolist/vue-datagrid",
-  "version": "4.7.0-next.2",
-  "description": "Vue data grid spreadsheet",
-  "main": "dist/vgrid.js",
+  "version": "4.0.0",
+  "description": "Vue 2 DataGrid Spreadsheet component with native Vue 2 render support",
+  "main": "./dist/vue2-datagrid.umd.js",
+  "module": "./dist/vue2-datagrid.js",
+  "types": "./dist/lib/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "webpack --config ./.webpack/webpack.config.js",
-    "serve": "webpack serve --config ./.webpack/webpack.dev.js"
+    "dev": "webpack serve --config ./.webpack/webpack.dev.js"
   },
   "keywords": [
-    "spreadsheet",
-    "vue",
+    "revo-grid",
+    "revolist",
+    "csv",
     "datagrid",
-    "revogrid",
-    "excel",
-    "js",
-    "gridjs",
-    "virtual",
-    "virtual grid",
     "datalist",
-    "rangeedit"
+    "datamanager",
+    "editable",
+    "excel",
+    "excel-grid",
+    "export",
+    "fast-grid",
+    "filtering",
+    "grid",
+    "grouping",
+    "infinity-grid",
+    "reactive",
+    "spreadsheet",
+    "stenciljs",
+    "storybook",
+    "treeview",
+    "virtualgrid",
+    "virtuallist",
+    "virtual",
+    "virtual-scroll",
+    "vue",
+    "vue-grid",
+    "vue-datagrid",
+    "vue2",
+    "vue2-datagrid"
   ],
   "author": "revolist",
   "repository": {
@@ -26,12 +49,11 @@
     "url": "git+https://github.com/revolist/vue-datagrid.git"
   },
   "bugs": {
-    "url": "https://github.com/revolist/vue-datagrid/issues"
+    "url": "https://github.com/revolist/revogrid/issues"
   },
-  "homepage": "https://github.com/revolist/vue-datagrid#readme",
+  "homepage": "https://github.com/revolist/revogrid#readme",
   "license": "MIT",
   "devDependencies": {
-    "vuex": "^3.6.2",
     "@vue/compiler-sfc": "^3.2.37",
     "clean-webpack-plugin": "^4.0.0",
     "html-webpack-plugin": "^5.5.1",
@@ -48,7 +70,7 @@
     "webpack-dev-server": "^4.13.3"
   },
   "peerDependencies": {
-    "@revolist/revogrid": "^4.7.0-next.2",
-    "@stencil/core": "^4.3.0"
+    "@revolist/revogrid": "^4.0.0",
+    "@stencil/core": "^4.17.1"
   }
 }

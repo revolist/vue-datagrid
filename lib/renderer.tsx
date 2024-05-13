@@ -3,12 +3,15 @@ import Vue, { VueConstructor } from 'vue';
 /**
  * Vue template factory
  */
-// TODO: provide passage of vue component to renderers
 interface VueElement extends HTMLElement {
   __vue__?: Vue;
 }
-export const vueTemplateConstructor = (
-  vueConstructor: VueConstructor,
+
+/**
+ * Vue adapter to convert vue component into VNode
+ */
+export const VGridVueTemplateConstructor = (
+  vueCtr: VueConstructor,
   e?: HTMLElement,
   p?: Record<string, any>,
   addition?: { vue: Vue },
@@ -28,11 +31,11 @@ export const vueTemplateConstructor = (
     e.appendChild(el);
 
     // if passed as simple structure convert it to vue object
-    if (typeof vueConstructor === 'object') {
-      vueConstructor = Vue.extend(vueConstructor);
+    if (typeof vueCtr === 'object') {
+      vueCtr = Vue.extend(vueCtr);
     }
     // create vue instance
-    return new vueConstructor({ el, propsData: p, parent: addition?.vue });
+    return new vueCtr({ el, propsData: p, parent: addition?.vue });
   }
 
   // check, probably vue instance already inited
@@ -47,16 +50,19 @@ export const vueTemplateConstructor = (
   return vueInstance;
 };
 
-const vueTemplate = (cntr: VueConstructor, customProps?: any) => {
+/**
+ * Vue template wrapper for virtual nodes
+ */
+const Template = (cntr: VueConstructor, customProps?: any) => {
   return (h: Function, p: any, addition?: any) => {
     const props = customProps ? { ...customProps, ...p } : p;
     const wrapper = (
       <span
-        ref={(el: HTMLElement) => vueTemplateConstructor(cntr, el, props, addition)}
+        ref={(el: HTMLElement) => VGridVueTemplateConstructor(cntr, el, props, addition)}
       />
     );
     return wrapper;
   };
 };
 
-export default vueTemplate;
+export default Template;

@@ -1,17 +1,10 @@
 const path = require('path');
 
-let libraryName = 'vgrid';
-module.exports = {
+let libraryName = 'vue2-datagrid';
+const common = {
   mode: 'production',
   entry: {
-    [libraryName]: './src/vgrid.ts',
-  },
-  output: {
-    path: path.resolve(__dirname, '../dist'),
-    filename: '[name].js',
-    library: 'VGrid',
-    libraryTarget: 'umd',
-    umdNamedDefine: true,
+    [libraryName]: './lib/index.ts',
   },
   externals: [
     'vue',
@@ -30,5 +23,25 @@ module.exports = {
         exclude: /node_modules/,
       },
     ],
-  },
+  }
 };
+module.exports = [{
+  ...common,
+  output: {
+    path: path.resolve(__dirname, '../dist'),
+    filename: '[name].umd.js',
+    library: libraryName,
+    libraryTarget: 'umd',
+    umdNamedDefine: true,
+  },
+}, {
+  ...common,
+  output: {
+    path: path.resolve(__dirname, '../dist'),
+    filename: '[name].js',
+    libraryTarget: 'module',
+  },
+  experiments: {
+    outputModule: true // Enables experimental support for ESM output
+  },
+}];

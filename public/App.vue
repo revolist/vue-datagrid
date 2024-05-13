@@ -1,28 +1,46 @@
 <template>
-	<div class="tile large">
-		<grid :row-headers="rowHeaders" stretch="true" range="true" :source="source" resize="true" :columns="headers" :editors="gridEditors"/>
-	</div>
+  <Grid
+      :additionalData="{
+        // pass vue instance to grid component to use it in cells templates
+        vue: this
+      }"
+      :stretch="false"
+      :row-headers="rowHeaders"
+      :source="source"
+      :columns="headers"
+      :editors="gridEditors"
+    />
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
 import Cell from './Cell.vue';
-import Grid, { VGridVueTemplate, VGridVueEditor } from '../src/vgrid';
+import Grid, { VGridVueTemplate, VGridVueEditor } from '../lib';
 
+/**
+ * Creates a new vue editor
+ */
 const NewEditor = Vue.extend({
   props: ['rowIndex', 'model', 'save', 'close'],
   render(h) {
-    return h('button', {
-      on: {
-        click: (e: MouseEvent) => {
-          e.stopPropagation();
-          this.close();
-        }
-      }
-    }, 'I am vue');
+    return h(
+      'button',
+      {
+        on: {
+          click: (e: MouseEvent) => {
+            e.stopPropagation();
+            this.close();
+          },
+        },
+      },
+      'I am editor #' + this.rowIndex,
+    );
   },
 });
 
+/**
+ * Generates header title based on index
+ */
 function generateHeader(index: number) {
   const asciiFirstLetter = 65;
   const lettersCount = 26;
@@ -30,9 +48,9 @@ function generateHeader(index: number) {
   let label = '';
   let pos: number;
   while (div > 0) {
-      pos = (div - 1) % lettersCount;
-      label = String.fromCharCode(asciiFirstLetter + pos) + label;
-      div = parseInt(((div - pos) / lettersCount).toString(), 10);
+    pos = (div - 1) % lettersCount;
+    label = String.fromCharCode(asciiFirstLetter + pos) + label;
+    div = parseInt(((div - pos) / lettersCount).toString(), 10);
   }
   return label.toLowerCase();
 }
@@ -42,91 +60,82 @@ function generateFakeDataObject(rowsNumber: number, colsNumber: number) {
   const columns: Record<number, any> = {};
   const all = colsNumber * rowsNumber;
   for (let j = 0; j < all; j++) {
-      let col = j%colsNumber;
-      let row = j/colsNumber|0;
-      if (!result[row]) {
-          result[row] = {
-            readonly: true
-          };
+    let col = j % colsNumber;
+    let row = (j / colsNumber) | 0;
+    if (!result[row]) {
+      result[row] = {
+        readonly: true,
+      };
+    }
+    if (!columns[col]) {
+      columns[col] = {
+        name: generateHeader(col),
+        prop: col,
+      };
+      if (col === 0) {
+        columns[col].rowDrag = true;
+        columns[col].editor = 'button';
+        /**
+         * This is how you can override default cell template with your own Vue component @file Cell.vue
+         */
+        columns[col].cellTemplate = VGridVueTemplate(Cell, {
+          customPropSample: 1,
+        });
       }
-      if (!columns[col]) {
-          columns[col] = {
-            name: generateHeader(col),
-            prop: col,
-          };
-          if (col === 0) {
-            columns[col].rowDrag = true;
-            columns[col].editor = 'button';
-            columns[col].cellTemplate = VGridVueTemplate(Cell, {
-              temp: 1
-            });
-          }
-      }
-      result[row]['key'] = 'key';
-      result[row][col] = row + ':' + col;
+    }
+    result[row]['key'] = 'key';
+    result[row][col] = row + ':' + col;
   }
   let headers = Object.keys(columns).map((k) => columns[parseInt(k, 10)]);
   return {
     source: result,
-    headers
+    headers,
   };
 }
 
+/**
+ * Main app component
+ */
 export default Vue.extend({
-	data() {
+  data() {
     const editor = VGridVueEditor(NewEditor);
-    console.log(this.$store)
-    return { ...generateFakeDataObject(40, 2), gridEditors: { button: editor }, rowHeaders: {
-      cellTemplate: () => 'a'
-    }};
+    return {
+      ...generateFakeDataObject(40, 2),
+      gridEditors: { button: editor },
+      rowHeaders: {
+        size: 100,
+        cellTemplate: (_: Function, { rowIndex }: { rowIndex: number }) => {
+          return rowIndex;
+        },
+      },
+    };
   },
   components: {
-    Grid
+    Grid,
   },
 });
 </script>
 
 <style lang="scss">
-body, html {
-    height: 100%;
+body,
+html {
+  height: 100%;
   width: 100%;
-  padding: 20px;
+  padding: 0;
   margin: 0;
   overflow: hidden;
   background-color: #f7f9fc;
   text-align: center;
-  }
+}
 
 revo-grid {
   display: block;
 }
 
-.tile {
-  background-color: #fff;
-  display: flex;
-  margin: 0 auto;
-  padding: 20px 0;
-  box-shadow: 0 0 14px 0 rgba(53,64,82,.05);
-  border-radius: 10px;
-  overflow: hidden;
-}
-
 .arrow-down svg {
-    opacity: 1;
-    width: 10px;
-    height: 10px;
+  opacity: 1;
+  width: 10px;
+  height: 10px;
 }
 
-revo-grid {
-    width: 100%;
-}
-
-.tile.dark {
-  background-color: #333;
-}
-
-.tile.large {
-  width: 500px;
-  height: 400px;
-}
 </style>

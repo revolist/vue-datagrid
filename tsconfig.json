@@ -6,10 +6,7 @@
     "allowUnreachableCode": false,
     "declaration": true,
     "experimentalDecorators": true,
-    "lib": [
-      "dom",
-      "es2017"
-    ],
+    "lib": ["dom", "es2017"],
     "moduleResolution": "node",
     "module": "es2015",
     "target": "es5",
@@ -23,14 +20,9 @@
     "noImplicitReturns": true,
     "sourceMap": true,
     "paths": {
-      "@revolist/vue-datagrid": ["src/vgrid"]
+      "@revolist/vue-datagrid": ["lib"]
     }
   },
-  "include": [
-    "src",
-    "types/jsx.d.ts"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+  "include": ["types/jsx.d.ts", "lib", "public"],
+  "exclude": ["node_modules"]
 }

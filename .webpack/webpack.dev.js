@@ -32,7 +32,7 @@ module.exports = {
     extensions: ['.tsx', '.ts', '.js', '.vue'],
     alias: {
       vue$: 'vue/dist/vue.esm.js',
-      '@revolist/vue-datagrid': path.resolve(__dirname, '../src/vgrid'),
+      '@revolist/vue-datagrid': path.resolve(__dirname, '../lib'),
     },
   },
   module: {
