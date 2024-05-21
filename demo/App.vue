@@ -1,7 +1,8 @@
 <template>
   <Grid
       :additionalData="{
-        // pass vue instance to grid component to use it in cells templates
+        // pass vue instance to grid component to use it in cells templates, provide/inject/$store/$router etc
+        // @ts-ignore
         vue: this
       }"
       :stretch="false"
@@ -15,7 +16,7 @@
 <script lang="ts">
 import Vue from 'vue';
 import Cell from './Cell.vue';
-import Grid, { VGridVueTemplate, VGridVueEditor } from '../lib';
+import Grid, { VGridVueTemplate, VGridVueEditor } from '@revolist/vue-datagrid';
 
 /**
  * Creates a new vue editor
@@ -78,6 +79,8 @@ function generateFakeDataObject(rowsNumber: number, colsNumber: number) {
         /**
          * This is how you can override default cell template with your own Vue component @file Cell.vue
          */
+
+    // @ts-ignore
         columns[col].cellTemplate = VGridVueTemplate(Cell, {
           customPropSample: 1,
         });
@@ -98,12 +101,14 @@ function generateFakeDataObject(rowsNumber: number, colsNumber: number) {
  */
 export default Vue.extend({
   data() {
+    // @ts-ignore
     const editor = VGridVueEditor(NewEditor);
     return {
       ...generateFakeDataObject(40, 2),
       gridEditors: { button: editor },
       rowHeaders: {
         size: 100,
+        // Sample row header template
         cellTemplate: (_: Function, { rowIndex }: { rowIndex: number }) => {
           return rowIndex;
         },

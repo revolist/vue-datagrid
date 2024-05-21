@@ -6,7 +6,7 @@ const VueLoaderPlugin = require('vue-loader');
 module.exports = {
   mode: 'development',
   entry: {
-    app: './public/index.ts',
+    app: './demo/index.ts',
   },
   devtool: 'inline-source-map',
   devServer: {
@@ -22,7 +22,7 @@ module.exports = {
     new CleanWebpackPlugin({ cleanStaleWebpackAssets: false }),
     new HtmlWebpackPlugin({
       title: 'Development',
-      template: './public/index.html',
+      template: './demo/index.html',
       appMountId: 'app',
       exJs: [], // [ "dist/vgrid.js"],
     }),
