@@ -235,7 +235,7 @@ export const RevogrOrderEditor = /*@__PURE__*/ Vue.extend({
     endOrder: createCommonMethod('endOrder') as Components.RevogrOrderEditor['endOrder'],
     clearOrder: createCommonMethod('clearOrder') as Components.RevogrOrderEditor['clearOrder'],
   },
-  render: createCommonRender('revogr-order-editor', ['rowdragstartinit', 'rowdragendinit', 'rowdragmoveinit', 'rowdragmousemove', 'rowdragendinit']),
+  render: createCommonRender('revogr-order-editor', ['rowdragstartinit', 'rowdragendinit', 'rowdragmoveinit', 'rowdragmousemove', 'rowdropinit']),
 });
 
 
