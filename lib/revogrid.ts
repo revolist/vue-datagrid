@@ -7,11 +7,6 @@ import { createCommonRender, createCommonMethod } from './vue-component-lib/util
 import type { Components } from '@revolist/revogrid';
 
 
-    import * as Default from '@revolist/revogrid/custom-element';
-
-    export default Default;
-
-    
 
 
 const customElementTags: string[] = [
@@ -19,7 +14,6 @@ const customElementTags: string[] = [
  'revogr-clipboard',
  'revogr-data',
  'revogr-edit',
- 'revogr-filter-panel',
  'revogr-focus',
  'revogr-header',
  'revogr-order-editor',
@@ -68,6 +62,7 @@ export const RevoGrid = /*@__PURE__*/ Vue.extend({
     disableVirtualX: {} as PropOptions<Components.RevoGrid['disableVirtualX']>,
     disableVirtualY: {} as PropOptions<Components.RevoGrid['disableVirtualY']>,
     jobsBeforeRender: {} as PropOptions<Components.RevoGrid['jobsBeforeRender']>,
+    registerVNode: {} as PropOptions<Components.RevoGrid['registerVNode']>,
   },
 
 
@@ -82,7 +77,6 @@ export const RevoGrid = /*@__PURE__*/ Vue.extend({
     scrollToCoordinate: createCommonMethod('scrollToCoordinate') as Components.RevoGrid['scrollToCoordinate'],
     setCellEdit: createCommonMethod('setCellEdit') as Components.RevoGrid['setCellEdit'],
     setCellsFocus: createCommonMethod('setCellsFocus') as Components.RevoGrid['setCellsFocus'],
-    registerVNode: createCommonMethod('registerVNode') as Components.RevoGrid['registerVNode'],
     getSource: createCommonMethod('getSource') as Components.RevoGrid['getSource'],
     getVisibleSource: createCommonMethod('getVisibleSource') as Components.RevoGrid['getVisibleSource'],
     getSourceStore: createCommonMethod('getSourceStore') as Components.RevoGrid['getSourceStore'],
@@ -96,7 +90,7 @@ export const RevoGrid = /*@__PURE__*/ Vue.extend({
     getContentSize: createCommonMethod('getContentSize') as Components.RevoGrid['getContentSize'],
     getSelectedRange: createCommonMethod('getSelectedRange') as Components.RevoGrid['getSelectedRange'],
   },
-  render: createCommonRender('revo-grid', ['contentsizechanged', 'beforeedit', 'beforerangeedit', 'afteredit', 'beforeautofill', 'beforeange', 'afterfocus', 'roworderchanged', 'beforesortingapply', 'beforesorting', 'rowdragstart', 'headerclick', 'beforecellfocus', 'beforefocuslost', 'beforesourceset', 'beforeanysource', 'aftersourceset', 'afteranysource', 'beforecolumnsset', 'beforecolumnapplied', 'aftercolumnsset', 'beforefilterapply', 'beforefiltertrimmed', 'beforetrimmed', 'aftertrimmed', 'viewportscroll', 'beforeexport', 'beforeeditstart', 'aftercolumnresize', 'beforerowdefinition', 'filterconfigchanged', 'rowheaderschanged', 'beforegridrender']),
+  render: createCommonRender('revo-grid', ['contentsizechanged', 'beforeedit', 'beforerangeedit', 'afteredit', 'beforeautofill', 'beforeange', 'afterfocus', 'roworderchanged', 'beforesortingapply', 'beforesorting', 'rowdragstart', 'headerclick', 'beforecellfocus', 'beforefocuslost', 'beforesourceset', 'beforeanysource', 'aftersourceset', 'afteranysource', 'beforecolumnsset', 'beforecolumnapplied', 'aftercolumnsset', 'beforefilterapply', 'beforefiltertrimmed', 'beforetrimmed', 'aftertrimmed', 'viewportscroll', 'beforeexport', 'beforeeditstart', 'aftercolumnresize', 'beforerowdefinition', 'filterconfigchanged', 'rowheaderschanged', 'beforegridrender', 'aftergridinit']),
 });
 
 
@@ -156,27 +150,6 @@ export const RevogrEdit = /*@__PURE__*/ Vue.extend({
     beforeDisconnect: createCommonMethod('beforeDisconnect') as Components.RevogrEdit['beforeDisconnect'],
   },
   render: createCommonRender('revogr-edit', ['celledit', 'closeedit']),
-});
-
-
-export const RevogrFilterPanel = /*@__PURE__*/ Vue.extend({
-
-  props: {
-    uuid: {} as PropOptions<Components.RevogrFilterPanel['uuid']>,
-    filterItems: {} as PropOptions<Components.RevogrFilterPanel['filterItems']>,
-    filterTypes: {} as PropOptions<Components.RevogrFilterPanel['filterTypes']>,
-    filterNames: {} as PropOptions<Components.RevogrFilterPanel['filterNames']>,
-    filterEntities: {} as PropOptions<Components.RevogrFilterPanel['filterEntities']>,
-    filterCaptions: {} as PropOptions<Components.RevogrFilterPanel['filterCaptions']>,
-    disableDynamicFiltering: {} as PropOptions<Components.RevogrFilterPanel['disableDynamicFiltering']>,
-  },
-
-
-  methods: {
-    show: createCommonMethod('show') as Components.RevogrFilterPanel['show'],
-    getChanges: createCommonMethod('getChanges') as Components.RevogrFilterPanel['getChanges'],
-  },
-  render: createCommonRender('revogr-filter-panel', ['filterChange']),
 });
 
 
@@ -317,6 +290,7 @@ export const RevogrViewportScroll = /*@__PURE__*/ Vue.extend({
     rowHeader: {} as PropOptions<Components.RevogrViewportScroll['rowHeader']>,
     contentWidth: {} as PropOptions<Components.RevogrViewportScroll['contentWidth']>,
     contentHeight: {} as PropOptions<Components.RevogrViewportScroll['contentHeight']>,
+    colType: {} as PropOptions<Components.RevogrViewportScroll['colType']>,
   },
 
 
