@@ -11,8 +11,6 @@ import type { Components } from '@revolist/revogrid';
 
 const customElementTags: string[] = [
  'revo-grid',
- 'revogr-filter-panel',
- 'vnode-html',
 ];
 Vue.config.ignoredElements = [...Vue.config.ignoredElements, ...customElementTags];
 
@@ -82,37 +80,5 @@ export const RevoGrid = /*@__PURE__*/ Vue.extend({
     getSelectedRange: createCommonMethod('getSelectedRange') as Components.RevoGrid['getSelectedRange'],
   },
   render: createCommonRender('revo-grid', ['contentsizechanged', 'beforeedit', 'beforerangeedit', 'afteredit', 'beforeautofill', 'beforeange', 'afterfocus', 'roworderchanged', 'beforesortingapply', 'beforesorting', 'rowdragstart', 'headerclick', 'beforecellfocus', 'beforefocuslost', 'beforesourceset', 'beforeanysource', 'aftersourceset', 'afteranysource', 'beforecolumnsset', 'beforecolumnapplied', 'aftercolumnsset', 'beforefilterapply', 'beforefiltertrimmed', 'beforetrimmed', 'aftertrimmed', 'viewportscroll', 'beforeexport', 'beforeeditstart', 'aftercolumnresize', 'beforerowdefinition', 'filterconfigchanged', 'rowheaderschanged', 'beforegridrender', 'aftergridinit']),
-});
-
-
-export const RevogrFilterPanel = /*@__PURE__*/ Vue.extend({
-
-  props: {
-    uuid: {} as PropOptions<Components.RevogrFilterPanel['uuid']>,
-    filterItems: {} as PropOptions<Components.RevogrFilterPanel['filterItems']>,
-    filterTypes: {} as PropOptions<Components.RevogrFilterPanel['filterTypes']>,
-    filterNames: {} as PropOptions<Components.RevogrFilterPanel['filterNames']>,
-    filterEntities: {} as PropOptions<Components.RevogrFilterPanel['filterEntities']>,
-    filterCaptions: {} as PropOptions<Components.RevogrFilterPanel['filterCaptions']>,
-    disableDynamicFiltering: {} as PropOptions<Components.RevogrFilterPanel['disableDynamicFiltering']>,
-  },
-
-
-  methods: {
-    show: createCommonMethod('show') as Components.RevogrFilterPanel['show'],
-    getChanges: createCommonMethod('getChanges') as Components.RevogrFilterPanel['getChanges'],
-  },
-  render: createCommonRender('revogr-filter-panel', ['filterChange']),
-});
-
-
-export const VnodeHtml = /*@__PURE__*/ Vue.extend({
-
-  props: {
-    redraw: {} as PropOptions<Components.VnodeHtml['redraw']>,
-  },
-
-
-  render: createCommonRender('vnode-html', ['html']),
 });
 
