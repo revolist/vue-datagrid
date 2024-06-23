@@ -3,7 +3,9 @@ import { VGridVueTemplateConstructor } from './renderer';
 import {
   ColumnDataSchemaModel,
   EditCell,
+  EditorBase,
   HyperFunc,
+  SaveData,
   VNode,
 } from '@revolist/revogrid';
 
@@ -11,16 +13,16 @@ import {
  * Vue editor adapter
  */
 // TODO: provide passage of vue component to renderers
-export default class VueEditorAdapter {
+export default class VueEditorAdapter implements EditorBase {
   public element: Element | null = null;
-  public editCell: EditCell | null = null;
+  public editCell?: EditCell;
   private vueEl: Vue | undefined;
 
   constructor(
     private VueEditorConstructor: VueConstructor,
     public column: ColumnDataSchemaModel,
-    private save: Function,
-    private close: Function
+    private save: (value: SaveData, preventFocus?: boolean) => void,
+    private close: (focusNext?: boolean) => void,
   ) {}
 
   // optional, called after editor rendered

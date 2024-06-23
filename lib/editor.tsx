@@ -1,23 +1,20 @@
-import { VueConstructor } from 'vue/types/umd';
+import { VueConstructor } from 'vue';
+import { ColumnDataSchemaModel, EditorCtr, SaveData } from '@revolist/revogrid';
 import VueEditorAdapter from './editor.adapter';
-import { ColumnDataSchemaModel } from '@revolist/revogrid';
 
 /**
- * Vue editor wrapper
- * 
- * @param vueConstructor
- * @returns
+ * Create editor constructor.
+ * This function creates editor constructor by wrapping it with VueEditorAdapter
+ * which is responsible for connecting editor with Vue lifecycle events
  */
-// TODO: provide passage of vue component to renderers
-const vueEditor = (vueConstructor: VueConstructor) => {
+const Editor = (vueConstructor: VueConstructor): EditorCtr => {
   return function (
     column: ColumnDataSchemaModel,
-    save: Function,
-    close: Function
+    save: (value: SaveData, preventFocus?: boolean) => void,
+    close: (focusNext?: boolean) => void
   ) {
-    const adapter = new VueEditorAdapter(vueConstructor, column, save, close);
-    return adapter;
+    return new VueEditorAdapter(vueConstructor, column, save, close);
   };
 };
 
-export default vueEditor;
+export default Editor;

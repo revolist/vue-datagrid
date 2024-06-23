@@ -11,17 +11,7 @@ import type { Components } from '@revolist/revogrid';
 
 const customElementTags: string[] = [
  'revo-grid',
- 'revogr-clipboard',
- 'revogr-data',
- 'revogr-edit',
- 'revogr-focus',
- 'revogr-header',
- 'revogr-order-editor',
- 'revogr-overlay-selection',
- 'revogr-row-headers',
- 'revogr-scroll-virtual',
- 'revogr-temp-range',
- 'revogr-viewport-scroll',
+ 'revogr-filter-panel',
  'vnode-html',
 ];
 Vue.config.ignoredElements = [...Vue.config.ignoredElements, ...customElementTags];
@@ -61,6 +51,7 @@ export const RevoGrid = /*@__PURE__*/ Vue.extend({
     additionalData: {} as PropOptions<Components.RevoGrid['additionalData']>,
     disableVirtualX: {} as PropOptions<Components.RevoGrid['disableVirtualX']>,
     disableVirtualY: {} as PropOptions<Components.RevoGrid['disableVirtualY']>,
+    hideAttribution: {} as PropOptions<Components.RevoGrid['hideAttribution']>,
     jobsBeforeRender: {} as PropOptions<Components.RevoGrid['jobsBeforeRender']>,
     registerVNode: {} as PropOptions<Components.RevoGrid['registerVNode']>,
   },
@@ -94,212 +85,24 @@ export const RevoGrid = /*@__PURE__*/ Vue.extend({
 });
 
 
-export const RevogrClipboard = /*@__PURE__*/ Vue.extend({
+export const RevogrFilterPanel = /*@__PURE__*/ Vue.extend({
 
   props: {
-    readonly: {} as PropOptions<Components.RevogrClipboard['readonly']>,
+    uuid: {} as PropOptions<Components.RevogrFilterPanel['uuid']>,
+    filterItems: {} as PropOptions<Components.RevogrFilterPanel['filterItems']>,
+    filterTypes: {} as PropOptions<Components.RevogrFilterPanel['filterTypes']>,
+    filterNames: {} as PropOptions<Components.RevogrFilterPanel['filterNames']>,
+    filterEntities: {} as PropOptions<Components.RevogrFilterPanel['filterEntities']>,
+    filterCaptions: {} as PropOptions<Components.RevogrFilterPanel['filterCaptions']>,
+    disableDynamicFiltering: {} as PropOptions<Components.RevogrFilterPanel['disableDynamicFiltering']>,
   },
 
 
   methods: {
-    doCopy: createCommonMethod('doCopy') as Components.RevogrClipboard['doCopy'],
+    show: createCommonMethod('show') as Components.RevogrFilterPanel['show'],
+    getChanges: createCommonMethod('getChanges') as Components.RevogrFilterPanel['getChanges'],
   },
-  render: createCommonRender('revogr-clipboard', ['beforepaste', 'beforepasteapply', 'pasteregion', 'afterpasteapply', 'beforecut', 'clearregion', 'beforecopy', 'beforecopyapply', 'copyregion']),
-});
-
-
-export const RevogrData = /*@__PURE__*/ Vue.extend({
-
-  props: {
-    readonly: {} as PropOptions<Components.RevogrData['readonly']>,
-    range: {} as PropOptions<Components.RevogrData['range']>,
-    rowClass: {} as PropOptions<Components.RevogrData['rowClass']>,
-    additionalData: {} as PropOptions<Components.RevogrData['additionalData']>,
-    rowSelectionStore: {} as PropOptions<Components.RevogrData['rowSelectionStore']>,
-    viewportRow: {} as PropOptions<Components.RevogrData['viewportRow']>,
-    viewportCol: {} as PropOptions<Components.RevogrData['viewportCol']>,
-    dimensionRow: {} as PropOptions<Components.RevogrData['dimensionRow']>,
-    colData: {} as PropOptions<Components.RevogrData['colData']>,
-    dataStore: {} as PropOptions<Components.RevogrData['dataStore']>,
-    type: {} as PropOptions<Components.RevogrData['type']>,
-    colType: {} as PropOptions<Components.RevogrData['colType']>,
-    jobsBeforeRender: {} as PropOptions<Components.RevogrData['jobsBeforeRender']>,
-  },
-
-
-  methods: {
-    updateCell: createCommonMethod('updateCell') as Components.RevogrData['updateCell'],
-  },
-  render: createCommonRender('revogr-data', ['beforerowrender', 'afterrender', 'beforecellrender', 'dragstartcell']),
-});
-
-
-export const RevogrEdit = /*@__PURE__*/ Vue.extend({
-
-  props: {
-    editCell: {} as PropOptions<Components.RevogrEdit['editCell']>,
-    column: {} as PropOptions<Components.RevogrEdit['column']>,
-    editor: {} as PropOptions<Components.RevogrEdit['editor']>,
-    saveOnClose: {} as PropOptions<Components.RevogrEdit['saveOnClose']>,
-    additionalData: {} as PropOptions<Components.RevogrEdit['additionalData']>,
-  },
-
-
-  methods: {
-    cancelChanges: createCommonMethod('cancelChanges') as Components.RevogrEdit['cancelChanges'],
-    beforeDisconnect: createCommonMethod('beforeDisconnect') as Components.RevogrEdit['beforeDisconnect'],
-  },
-  render: createCommonRender('revogr-edit', ['celledit', 'closeedit']),
-});
-
-
-export const RevogrFocus = /*@__PURE__*/ Vue.extend({
-
-  props: {
-    colType: {} as PropOptions<Components.RevogrFocus['colType']>,
-    rowType: {} as PropOptions<Components.RevogrFocus['rowType']>,
-    selectionStore: {} as PropOptions<Components.RevogrFocus['selectionStore']>,
-    dimensionRow: {} as PropOptions<Components.RevogrFocus['dimensionRow']>,
-    dimensionCol: {} as PropOptions<Components.RevogrFocus['dimensionCol']>,
-    dataStore: {} as PropOptions<Components.RevogrFocus['dataStore']>,
-    colData: {} as PropOptions<Components.RevogrFocus['colData']>,
-    focusTemplate: {} as PropOptions<Components.RevogrFocus['focusTemplate']>,
-  },
-
-
-  render: createCommonRender('revogr-focus', ['beforefocusrender', 'beforescrollintoview', 'afterfocus']),
-});
-
-
-export const RevogrHeader = /*@__PURE__*/ Vue.extend({
-
-  props: {
-    viewportCol: {} as PropOptions<Components.RevogrHeader['viewportCol']>,
-    dimensionCol: {} as PropOptions<Components.RevogrHeader['dimensionCol']>,
-    selectionStore: {} as PropOptions<Components.RevogrHeader['selectionStore']>,
-    groups: {} as PropOptions<Components.RevogrHeader['groups']>,
-    groupingDepth: {} as PropOptions<Components.RevogrHeader['groupingDepth']>,
-    readonly: {} as PropOptions<Components.RevogrHeader['readonly']>,
-    canResize: {} as PropOptions<Components.RevogrHeader['canResize']>,
-    resizeHandler: {} as PropOptions<Components.RevogrHeader['resizeHandler']>,
-    colData: {} as PropOptions<Components.RevogrHeader['colData']>,
-    columnFilter: {} as PropOptions<Components.RevogrHeader['columnFilter']>,
-    type: {} as PropOptions<Components.RevogrHeader['type']>,
-    additionalData: {} as PropOptions<Components.RevogrHeader['additionalData']>,
-  },
-
-
-  render: createCommonRender('revogr-header', ['beforeheaderclick', 'headerresize', 'beforeheaderresize', 'headerdblclick']),
-});
-
-
-export const RevogrOrderEditor = /*@__PURE__*/ Vue.extend({
-
-  props: {
-    parent: {} as PropOptions<Components.RevogrOrderEditor['parent']>,
-    dimensionRow: {} as PropOptions<Components.RevogrOrderEditor['dimensionRow']>,
-    dimensionCol: {} as PropOptions<Components.RevogrOrderEditor['dimensionCol']>,
-    dataStore: {} as PropOptions<Components.RevogrOrderEditor['dataStore']>,
-  },
-
-
-  methods: {
-    dragStart: createCommonMethod('dragStart') as Components.RevogrOrderEditor['dragStart'],
-    endOrder: createCommonMethod('endOrder') as Components.RevogrOrderEditor['endOrder'],
-    clearOrder: createCommonMethod('clearOrder') as Components.RevogrOrderEditor['clearOrder'],
-  },
-  render: createCommonRender('revogr-order-editor', ['rowdragstartinit', 'rowdragendinit', 'rowdragmoveinit', 'rowdragmousemove', 'rowdropinit']),
-});
-
-
-export const RevogrOverlaySelection = /*@__PURE__*/ Vue.extend({
-
-  props: {
-    readonly: {} as PropOptions<Components.RevogrOverlaySelection['readonly']>,
-    range: {} as PropOptions<Components.RevogrOverlaySelection['range']>,
-    canDrag: {} as PropOptions<Components.RevogrOverlaySelection['canDrag']>,
-    useClipboard: {} as PropOptions<Components.RevogrOverlaySelection['useClipboard']>,
-    selectionStore: {} as PropOptions<Components.RevogrOverlaySelection['selectionStore']>,
-    dimensionRow: {} as PropOptions<Components.RevogrOverlaySelection['dimensionRow']>,
-    dimensionCol: {} as PropOptions<Components.RevogrOverlaySelection['dimensionCol']>,
-    dataStore: {} as PropOptions<Components.RevogrOverlaySelection['dataStore']>,
-    colData: {} as PropOptions<Components.RevogrOverlaySelection['colData']>,
-    lastCell: {} as PropOptions<Components.RevogrOverlaySelection['lastCell']>,
-    editors: {} as PropOptions<Components.RevogrOverlaySelection['editors']>,
-    applyChangesOnClose: {} as PropOptions<Components.RevogrOverlaySelection['applyChangesOnClose']>,
-    additionalData: {} as PropOptions<Components.RevogrOverlaySelection['additionalData']>,
-    isMobileDevice: {} as PropOptions<Components.RevogrOverlaySelection['isMobileDevice']>,
-  },
-
-
-  render: createCommonRender('revogr-overlay-selection', ['beforecopyregion', 'beforepasteregion', 'celleditapply', 'beforecellfocusinit', 'setedit', 'beforeapplyrange', 'beforesetrange', 'beforeeditrender', 'setrange', 'selectall', 'canceledit', 'settemprange', 'applyfocus', 'focuscell', 'beforerangedataapply', 'selectionchangeinit', 'beforerangecopyapply', 'rangeeditapply', 'clipboardrangecopy', 'clipboardrangepaste', 'beforekeydown', 'beforekeyup', 'beforecellsave']),
-});
-
-
-export const RevogrRowHeaders = /*@__PURE__*/ Vue.extend({
-
-  props: {
-    height: {} as PropOptions<Components.RevogrRowHeaders['height']>,
-    dataPorts: {} as PropOptions<Components.RevogrRowHeaders['dataPorts']>,
-    headerProp: {} as PropOptions<Components.RevogrRowHeaders['headerProp']>,
-    rowClass: {} as PropOptions<Components.RevogrRowHeaders['rowClass']>,
-    resize: {} as PropOptions<Components.RevogrRowHeaders['resize']>,
-    rowHeaderColumn: {} as PropOptions<Components.RevogrRowHeaders['rowHeaderColumn']>,
-    additionalData: {} as PropOptions<Components.RevogrRowHeaders['additionalData']>,
-    jobsBeforeRender: {} as PropOptions<Components.RevogrRowHeaders['jobsBeforeRender']>,
-  },
-
-
-  render: createCommonRender('revogr-row-headers', ['scrollview', 'ref']),
-});
-
-
-export const RevogrScrollVirtual = /*@__PURE__*/ Vue.extend({
-
-  props: {
-    dimension: {} as PropOptions<Components.RevogrScrollVirtual['dimension']>,
-    viewportStore: {} as PropOptions<Components.RevogrScrollVirtual['viewportStore']>,
-    dimensionStore: {} as PropOptions<Components.RevogrScrollVirtual['dimensionStore']>,
-  },
-
-
-  methods: {
-    setScroll: createCommonMethod('setScroll') as Components.RevogrScrollVirtual['setScroll'],
-    changeScroll: createCommonMethod('changeScroll') as Components.RevogrScrollVirtual['changeScroll'],
-  },
-  render: createCommonRender('revogr-scroll-virtual', ['scrollvirtual']),
-});
-
-
-export const RevogrTempRange = /*@__PURE__*/ Vue.extend({
-
-  props: {
-    selectionStore: {} as PropOptions<Components.RevogrTempRange['selectionStore']>,
-    dimensionRow: {} as PropOptions<Components.RevogrTempRange['dimensionRow']>,
-    dimensionCol: {} as PropOptions<Components.RevogrTempRange['dimensionCol']>,
-  },
-
-
-  render: createCommonRender('revogr-temp-range', []),
-});
-
-
-export const RevogrViewportScroll = /*@__PURE__*/ Vue.extend({
-
-  props: {
-    rowHeader: {} as PropOptions<Components.RevogrViewportScroll['rowHeader']>,
-    contentWidth: {} as PropOptions<Components.RevogrViewportScroll['contentWidth']>,
-    contentHeight: {} as PropOptions<Components.RevogrViewportScroll['contentHeight']>,
-    colType: {} as PropOptions<Components.RevogrViewportScroll['colType']>,
-  },
-
-
-  methods: {
-    setScroll: createCommonMethod('setScroll') as Components.RevogrViewportScroll['setScroll'],
-    changeScroll: createCommonMethod('changeScroll') as Components.RevogrViewportScroll['changeScroll'],
-    applyScroll: createCommonMethod('applyScroll') as Components.RevogrViewportScroll['applyScroll'],
-  },
-  render: createCommonRender('revogr-viewport-scroll', ['scrollviewport', 'resizeviewport', 'scrollchange', 'scrollviewportsilent']),
+  render: createCommonRender('revogr-filter-panel', ['filterChange']),
 });
 
 
