@@ -1,0 +1,44 @@
+# Automatically release a new version of the package when a new version is created
+name: Auto Release
+
+on:
+  push:
+    branches:
+      - main
+      - next
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: revolist/revogrid-actions
+          ref: main
+          path: ./actions
+          token: ${{ secrets.REPO_TOKEN }}
+      - name: Release package if new version
+        uses: ./actions/release-pkg
+        with:
+          draft: false
+          # if branch is next, set prerelease to true
+          prerelease: ${{ github.ref == 'refs/heads/next' }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+  build:
+    runs-on: ubuntu-latest
+    needs: release
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: revolist/revogrid-actions
+          ref: main
+          path: ./actions
+          token: ${{ secrets.REPO_TOKEN }}
+      - name: Publish package
+        uses: ./actions/publish-pkg
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          npm_token: ${{ secrets.NPM_TOKEN }}
