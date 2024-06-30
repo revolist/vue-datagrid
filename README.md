@@ -72,7 +72,7 @@ Support Millions of cells and thousands of columns easy and efficiently for fast
   - Column header template.
   - Row header template.
   - Cell template (create your own cell views).
-  - Cell editor (apply custom editors and cell types).
+  - Cell editor (use predefined or apply your own custom editors and cell types).
   - Cell properties (define custom properties for rendered cells).
 
 - **Column Types**: [More details](https://revolist.github.io/revogrid/guide/column.types.html)
@@ -104,11 +104,10 @@ Support Millions of cells and thousands of columns easy and efficiently for fast
 
 
 
-### Usage Vue2 [Example](https://codesandbox.io/s/data-vue-test-3wkzi?file=/src/App.vue)
-
-
+### Usage Vue 2 [Example](https://codesandbox.io/s/data-vue-test-3wkzi?file=/src/App.vue)
 
 With NPM:
+
 ```bash
 npm i @revolist/vue-datagrid --save;
 ```
@@ -120,13 +119,16 @@ yarn add @revolist/vue-datagrid;
 ```
 
 ```vue
+// App.vue
+
 <template>
   <!-- Use the VGrid component and bind the data source and columns -->
-  <v-grid :source="rows" :columns="columns"/>
+  <v-grid :source="rows" :columns="columns" />
 </template>
 
 <script>
-import VGrid from '@revolist/vue-datagrid'; // Import the VGrid component
+import Grid, { VGridVueTemplate } from '@revolist/vue-datagrid'; // Import the VGrid component
+import Cell from './Cell.vue'; // Custom cell template
 
 export default {
   name: 'App',
@@ -135,24 +137,36 @@ export default {
       // Define the columns for the grid
       columns: [
         { prop: 'name', name: 'First' }, // Simple column definition
-        { prop: 'details', name: 'Second' } // Another column definition
+        { prop: 'details', cellTemplate: VGridVueTemplate(Cell) }, // Another column definition
       ],
       // Define the data source for the grid
-      rows: [{ name: '1', details: 'Item 1' }]
+      rows: [{ name: '1', details: 'Item 1' }],
     };
   },
   components: {
-    VGrid // Register the VGrid component
-  }
+    VGrid, // Register the VGrid component
+  },
+};
+</script>
+```
+```vue
+// Cell.vue
+<template>Custom cell</template>
+<script>
+import Vue, { PropType } from 'vue';
+export default {
+  props: ['prop', 'model', 'column', 'rowIndex', 'colIndex', 'colType', 'type', 'data'],
 };
 </script>
 ```
 
+
 ## Versions
 
 - **2.0+**: Introduced the plugin system, grouping, sorting, and filtering.
-- **3.0+**: Breaking changes introduced. See the [migration guide](./docs/migration.3.0.md). This version features new component loading, ESM modules, Bootstrap support, and much [more](./docs/migration.3.0.md).
-- **4.0+**: Breaking changes introduced. See the [migration guide](./docs/migration.4.0.md). In this version, we rethought our framework approach, updated typings, fixed major issues, updated core and significantly improved overall performance. The grid is now much faster, with better plugin support and full framework support for Angular, React, and Vue, along with partial support for Ember and Svelte. Redesigned the documentation, and added more examples.
+- **3.0+**: Breaking changes introduced. See the [migration guide](./docs/guide/migration.md).
+This version features new component loading, ESM modules, Bootstrap support, and much [more](./docs/guide/migration.md).
+- **4.0+**: Breaking changes introduced. See the [migration guide](./docs/guide/migration.md). In this version, we rethought our framework approach, updated typings, fixed major issues, updated core and significantly improved overall performance. The grid is now much faster, with better plugin support and full framework support for Angular, React, and Vue, along with partial support for Ember and Svelte. Redesigned the documentation, and added more examples.
 
 
 
