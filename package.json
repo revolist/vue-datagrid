@@ -1,6 +1,6 @@
 {
   "name": "@revolist/vue-datagrid",
-  "version": "4.0.29",
+  "version": "4.0.30",
   "description": "Vue 2 DataGrid Spreadsheet component with native Vue 2 render support",
   "main": "./dist/vue2-datagrid.umd.js",
   "module": "./dist/vue2-datagrid.js",
@@ -72,6 +72,6 @@
     "@stencil/core": "^4.17.1"
   },
   "peerDependencies": {
-    "@revolist/revogrid": "4.0.29"
+    "@revolist/revogrid": "4.0.30"
   }
 }
