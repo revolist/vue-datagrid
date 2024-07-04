@@ -54,6 +54,9 @@
   },
   "homepage": "https://github.com/revolist/revogrid#readme",
   "license": "MIT",
+  "dependencies": {
+    "@revolist/revogrid": "^4.0.33"
+  },
   "devDependencies": {
     "@vue/compiler-sfc": "^3.2.37",
     "clean-webpack-plugin": "^4.0.0",
@@ -70,8 +73,5 @@
     "webpack-cli": "^5.0.2",
     "webpack-dev-server": "^4.13.3",
     "@stencil/core": "^4.17.1"
-  },
-  "peerDependencies": {
-    "@revolist/revogrid": "4.0.33"
   }
 }
