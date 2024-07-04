@@ -53,7 +53,7 @@ export const VGridVueTemplateConstructor = (
 /**
  * Vue template wrapper for virtual nodes
  */
-const Template = (cntr: VueConstructor, customProps?: any) => {
+export const Template = (cntr: VueConstructor, customProps?: any) => {
   return (h: Function, p: any, addition?: any) => {
     const props = customProps ? { ...customProps, ...p } : p;
     const wrapper = (
@@ -65,4 +65,3 @@ const Template = (cntr: VueConstructor, customProps?: any) => {
   };
 };
 
-export default Template;

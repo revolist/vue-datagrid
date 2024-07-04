@@ -7,7 +7,7 @@ import VueEditorAdapter from './editor.adapter';
  * This function creates editor constructor by wrapping it with VueEditorAdapter
  * which is responsible for connecting editor with Vue lifecycle events
  */
-const Editor = (vueConstructor: VueConstructor): EditorCtr => {
+export const Editor = (vueConstructor: VueConstructor): EditorCtr => {
   return function (
     column: ColumnDataSchemaModel,
     save: (value: SaveData, preventFocus?: boolean) => void,
@@ -17,4 +17,3 @@ const Editor = (vueConstructor: VueConstructor): EditorCtr => {
   };
 };
 
-export default Editor;

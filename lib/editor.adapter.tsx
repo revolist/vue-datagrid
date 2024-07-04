@@ -1,4 +1,4 @@
-import { VueConstructor } from 'vue/types/umd';
+import { VueConstructor } from 'vue';
 import { VGridVueTemplateConstructor } from './renderer';
 import {
   ColumnDataSchemaModel,
@@ -8,6 +8,15 @@ import {
   SaveData,
   VNode,
 } from '@revolist/revogrid';
+
+/**
+ * Data passed to editor
+ */
+export type EditorType = {
+  column: ColumnDataSchemaModel;
+  save: (value: SaveData, preventFocus?: boolean) => void;
+  close: (focusNext?: boolean) => void;
+} & Partial<EditCell>;
 
 /**
  * Vue editor adapter
@@ -42,14 +51,16 @@ export default class VueEditorAdapter implements EditorBase {
     if (!el) {
       return;
     }
+    const editorData: EditorType = {
+      ...this.editCell,
+      column: this.column,
+      save: this.save,
+      close: this.close,
+    };
     const template = VGridVueTemplateConstructor(
       this.VueEditorConstructor,
       el,
-      {
-        ...this.editCell,
-        save: this.save,
-        close: this.close,
-      },
+      editorData,
       addition
     );
     if (!template) {
