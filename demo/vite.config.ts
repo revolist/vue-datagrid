@@ -8,7 +8,8 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      'vue': 'vue/dist/vue.esm.js' // Alias to use the full build of Vue
+      'vue': 'vue/dist/vue.esm.js', // Alias to use the full build of Vue
+      '@revolist/vue-datagrid': '../lib'
     }
   },
 });

@@ -18,7 +18,10 @@
     "noImplicitAny": true,
     "noImplicitThis": true,
     "noImplicitReturns": true,
-    "sourceMap": true
+    "sourceMap": true,
+    "paths": {
+      "@revolist/vue-datagrid": ["../lib"]
+    }
   },
   "include": ["./"],
   "exclude": ["node_modules"]
