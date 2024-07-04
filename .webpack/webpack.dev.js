@@ -14,7 +14,7 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, '../distServe'),
-    filename: '[name].js',
+    filename: '[name].cjs',
     libraryTarget: 'umd',
     umdNamedDefine: true,
   },

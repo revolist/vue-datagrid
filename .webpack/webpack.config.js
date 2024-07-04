@@ -29,7 +29,7 @@ module.exports = [{
   ...common,
   output: {
     path: path.resolve(__dirname, '../dist'),
-    filename: '[name].umd.js',
+    filename: '[name].umd.cjs',
     library: libraryName,
     libraryTarget: 'umd',
     umdNamedDefine: true,
@@ -38,7 +38,7 @@ module.exports = [{
   ...common,
   output: {
     path: path.resolve(__dirname, '../dist'),
-    filename: '[name].js',
+    filename: '[name].mjs',
     libraryTarget: 'module',
   },
   experiments: {
