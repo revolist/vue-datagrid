@@ -8,6 +8,6 @@ export type * from '@revolist/revogrid';
 export const VGrid = (async () => {
     await (defineCustomElements() as unknown as Promise<void>);
     return RevoGrid;
-  });
+});
   
-  export default VGrid;
+export default VGrid;

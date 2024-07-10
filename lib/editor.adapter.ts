@@ -44,7 +44,7 @@ export default class VueEditorAdapter implements EditorBase {
   }
 
   render(h: HyperFunc<VNode>, addition: any) {
-    return <span ref={(e: HTMLElement) => this.renderAdapter(e, addition)} />;
+    return h('span', { ref: (el: HTMLElement) => this.renderAdapter(el, addition) });
   }
 
   private renderAdapter(el?: HTMLElement, addition?: any) {
