@@ -58,6 +58,7 @@ export const Template = (cntr: VueConstructor, customProps?: any) => {
   return (h: HyperFunc<VNode>, p: any, addition?: any) => {
     const props = customProps ? { ...customProps, ...p } : p;
     const wrapper = h('span', {
+      key: `${props.key}-${props.rowIndex}`,
       ref: (el: HTMLElement) => VGridVueTemplateConstructor(cntr, el, props, addition),
     });
     return wrapper;

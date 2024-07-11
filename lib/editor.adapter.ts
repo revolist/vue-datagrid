@@ -31,7 +31,7 @@ export default class VueEditorAdapter implements EditorBase {
     private VueEditorConstructor: VueConstructor,
     public column: ColumnDataSchemaModel,
     private save: (value: SaveData, preventFocus?: boolean) => void,
-    private close: (focusNext?: boolean) => void,
+    private close: (focusNext?: boolean) => void
   ) {}
 
   // optional, called after editor rendered
@@ -44,7 +44,10 @@ export default class VueEditorAdapter implements EditorBase {
   }
 
   render(h: HyperFunc<VNode>, addition: any) {
-    return h('span', { ref: (el: HTMLElement) => this.renderAdapter(el, addition) });
+    return h('span', {
+      key: `${this.column.prop}-${this.editCell?.rowIndex || 0}`,
+      ref: (el: HTMLElement) => this.renderAdapter(el, addition),
+    });
   }
 
   private renderAdapter(el?: HTMLElement, addition?: any) {

@@ -1,7 +1,7 @@
 /* eslint-disable */
 /* tslint:disable */
 /* auto-generated vue proxies */
-import Vue, { Component, PropOptions } from 'vue';
+import Vue, { PropOptions } from 'vue';
 import { createCommonRender, createCommonMethod } from './vue-component-lib/utils';
 
 import type { Components } from '@revolist/revogrid';
@@ -15,7 +15,7 @@ const customElementTags: string[] = [
 Vue.config.ignoredElements = [...Vue.config.ignoredElements, ...customElementTags];
 
 
-export const RevoGrid: Component = /*@__PURE__*/ Vue.extend({
+export const RevoGrid = /*@__PURE__*/ Vue.extend({
 
   props: {
     rowHeaders: {} as PropOptions<Components.RevoGrid['rowHeaders']>,
