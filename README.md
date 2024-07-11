@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://revolist.github.io/revogrid">
+  <a href="https://rv-grid.com">
     <img src="./assets/logo.svg" alt="RevoGrid" height="150" />
   </a>
 </p>
@@ -20,7 +20,7 @@ Support Millions of cells and thousands of columns easy and efficiently for fast
 </p>
 
 <p align="center">
-  <a href="https://revolist.github.io/revogrid">Demo and API</a> •
+  <a href="https://rv-grid.com">Demo and API</a> •
   <a href="#key-features">Key Features</a> •
   <a href="#basic-usage">How To Use</a> •
   <a href="#installation">Installation</a> •
@@ -75,7 +75,7 @@ Support Millions of cells and thousands of columns easy and efficiently for fast
   - Cell editor (use predefined or apply your own custom editors and cell types).
   - Cell properties (define custom properties for rendered cells).
 
-- **Column Types**: [More details](https://revolist.github.io/revogrid/guide/column.types.html)
+- **Column Types**: [More details](https://rv-grid.com/guide/column/#Column-Formats)
   - Text/String (default).
   - Number.
   - Select.
@@ -98,7 +98,7 @@ Support Millions of cells and thousands of columns easy and efficiently for fast
 
 - **Plugin System**: Create custom plugins or extend existing ones easily.
 
-- **Additional Customizations and Improvements**: Explore hundreds of other small customizations and improvements in [RevoGrid](https://revolist.github.io/revogrid).
+- **Additional Customizations and Improvements**: Explore hundreds of other small customizations and improvements in [RevoGrid](https://rv-grid.com/).
 
 <br>
 

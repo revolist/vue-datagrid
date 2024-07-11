@@ -5,6 +5,7 @@
         // @ts-ignore
         vue: this
       }"
+      :row-definitions="rowDefinitions"
       :stretch="false"
       :row-headers="rowHeaders"
       :source="source"
@@ -105,6 +106,7 @@ export default Vue.extend({
     const editor = VGridVueEditor(NewEditor);
     return {
       ...generateFakeDataObject(40, 2),
+      rowDefinitions: [{ type: "rgRow", index: 0, size: 145 }],
       gridEditors: { button: editor },
       rowHeaders: {
         size: 100,
