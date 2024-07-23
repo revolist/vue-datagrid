@@ -1,4 +1,4 @@
-import { HyperFunc, VNode } from '@revolist/revogrid';
+import { ColumnDataSchemaModel, ColumnTemplateProp, HyperFunc, VNode } from '@revolist/revogrid';
 import Vue, { VueConstructor } from 'vue';
 
 /**
@@ -55,10 +55,10 @@ export const VGridVueTemplateConstructor = (
  * Vue template wrapper for virtual nodes
  */
 export const Template = (cntr: VueConstructor, customProps?: any) => {
-  return (h: HyperFunc<VNode>, p: any, addition?: any) => {
+  return (h: HyperFunc<VNode>, p:  ColumnDataSchemaModel | ColumnTemplateProp, addition?: any) => {
     const props = customProps ? { ...customProps, ...p } : p;
     const wrapper = h('span', {
-      key: `${props.key}-${props.rowIndex}`,
+      key: `${props.key}-${props.rowIndex || 0}`,
       ref: (el: HTMLElement) => VGridVueTemplateConstructor(cntr, el, props, addition),
     });
     return wrapper;
