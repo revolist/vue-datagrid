@@ -15,6 +15,7 @@ This repo is read-only and will be **deprecated** in v5+ in favor of monorepos. 
   <a href="https://github.com/revolist/revogrid/blob/master/LICENSE"><img src="https://img.shields.io/npm/l/@revolist/revogrid" alt="Software License"/></a>
   <img src="https://badgen.net/bundlephobia/dependency-count/@revolist/revogrid@latest" alt="Tree shaking"/>
   <img src="https://badgen.net/bundlephobia/tree-shaking/@revolist/revogrid@latest" alt="Tree shaking"/>
+  <img src="https://sonarcloud.io/api/project_badges/measure?project=revolist_revogrid&metric=alert_status" alt="Sonar Quality Gate"/>
 </p>
 
 #
@@ -38,9 +39,12 @@ Support Millions of cells and thousands of columns easy and efficiently for fast
 <i>RevoGrid material theme.</i>
 <br>
 
+
 ## Key Features
 
 - **High Performance**: Handles millions of cells in the viewport with a powerful core built by default.
+
+- **Accessibility**: Follows WAI-ARIA best practices.
 
 - **Keyboard Support**:
   - Excel-like focus for efficient navigation and editing.
@@ -50,6 +54,12 @@ Support Millions of cells and thousands of columns easy and efficiently for fast
 - **Lightweight**: Minimal initial bundle size ![Min size](https://badgen.net/bundlephobia/min/@revolist/revogrid@latest). Can be imported with polyfills or as a module for modern browsers.
 
 - **Intelligent Virtual DOM**: Smart row recombination to minimize redraws.
+
+- **Virtual Scroll**: Handles large datasets with infinite scroll.
+
+- **Formula Support**: Evaluate formulas in cell data.
+
+- **Drag and Drop**: Drag and drop in rows and columns.
 
 - **Sorting**: Multiple options, customizable per column, with advanced event handling.
 
@@ -74,6 +84,8 @@ Support Millions of cells and thousands of columns easy and efficiently for fast
 
 - **Cell Editing**: In-place editing of cell data.
 
+- **Cell Merging**: Merge cells to form groups.
+
 - **Customizations**:
   - Column header template.
   - Row header template.
@@ -87,8 +99,6 @@ Support Millions of cells and thousands of columns easy and efficiently for fast
   - Select.
   - Date.
   - Custom (create extended styles using any template).
-
-- **Drag and Drop**: Easily reorder rows.
 
 - **Range Operations**:
   - Selection.
@@ -206,6 +216,9 @@ export default {
     -   Enhanced plugin support - now with full access to grid providers.
     -   Updated documentation.
     -   Provided full framework support and native render for  Angular, React, Svelte and Vue.
+ 
+-   **What next?**
+    -   Check our [Roadmap](https://github.com/users/revolist/projects/3)
 
 
 ## Our Sponsors
