@@ -52,6 +52,7 @@ export const RevoGrid = /*@__PURE__*/ Vue.extend({
     hideAttribution: {} as PropOptions<Components.RevoGrid['hideAttribution']>,
     jobsBeforeRender: {} as PropOptions<Components.RevoGrid['jobsBeforeRender']>,
     registerVNode: {} as PropOptions<Components.RevoGrid['registerVNode']>,
+    accessible: {} as PropOptions<Components.RevoGrid['accessible']>,
   },
 
 
