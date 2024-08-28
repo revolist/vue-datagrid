@@ -10,11 +10,11 @@ export const createCommonRender = (
       return {
         ...listeners,
         [eventName]: (event: CustomEvent<any>) => {
-          // let emittedValue = event.detail;
-          // if (event.detail?.value) {
-          //   emittedValue = event.detail.value;
-          // }
-          vueElement.$emit(eventName, event);
+          let emittedValue = event.detail;
+          if (event.detail?.value) {
+            emittedValue = event.detail.value;
+          }
+          vueElement.$emit(eventName, emittedValue);
         },
       };
     }, vueElement.$listeners);
