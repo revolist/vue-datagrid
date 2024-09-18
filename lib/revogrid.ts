@@ -79,6 +79,7 @@ export const RevoGrid = /*@__PURE__*/ Vue.extend({
     getFocused: createCommonMethod('getFocused') as Components.RevoGrid['getFocused'],
     getContentSize: createCommonMethod('getContentSize') as Components.RevoGrid['getContentSize'],
     getSelectedRange: createCommonMethod('getSelectedRange') as Components.RevoGrid['getSelectedRange'],
+    refreshExtraElements: createCommonMethod('refreshExtraElements') as Components.RevoGrid['refreshExtraElements'],
   },
   render: createCommonRender('revo-grid', ['contentsizechanged', 'beforeedit', 'beforerangeedit', 'afteredit', 'beforeautofill', 'beforerange', 'afterfocus', 'roworderchanged', 'beforesortingapply', 'beforesorting', 'rowdragstart', 'headerclick', 'beforecellfocus', 'beforefocuslost', 'beforesourceset', 'beforeanysource', 'aftersourceset', 'afteranysource', 'beforecolumnsset', 'beforecolumnapplied', 'aftercolumnsset', 'beforefilterapply', 'beforefiltertrimmed', 'beforetrimmed', 'aftertrimmed', 'viewportscroll', 'beforeexport', 'beforeeditstart', 'aftercolumnresize', 'beforerowdefinition', 'filterconfigchanged', 'rowheaderschanged', 'beforegridrender', 'aftergridrender', 'aftergridinit', 'additionaldatachanged', 'afterthemechanged']),
 });
