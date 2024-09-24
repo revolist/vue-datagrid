@@ -14,10 +14,12 @@ export const createCommonRender = (
         },
       };
     }, vueElement.$listeners);
-    const attributes = vueElement.$props
+     const domProps = vueElement.$props
       ? Object.keys(vueElement.$props).reduce((attrs: any, prop: string) => {
-          const attributeName = toDashCase(prop);
-          attrs[attributeName] = vueElement.$props[prop];
+          // dashed-case
+          attrs[toDashCase(prop)] = vueElement.$props[prop];
+          // original-case
+          attrs[prop] = vueElement.$props[prop];
           return attrs;
         }, {})
       : {};
@@ -25,9 +27,9 @@ export const createCommonRender = (
       tagName,
       {
         ref: "wc",
-        domProps: vueElement.$props,
+        domProps,
         on: allListeners,
-        attrs: { ...attributes, "data-testid": tagName },
+        attrs: { "data-testid": tagName },
       },
       [vueElement.$slots.default]
     );
