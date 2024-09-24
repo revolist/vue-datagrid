@@ -30,7 +30,7 @@
   "homepage": "https://github.com/revolist/vue-datagrid#readme",
   "license": "MIT",
   "dependencies": {
-    "@revolist/revogrid": "^4.0.34"
+    "@revolist/revogrid": "^4.10.10"
   },
   "devDependencies": {
     "@vue/compiler-sfc": "^3.2.37",

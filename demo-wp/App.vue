@@ -36,23 +36,27 @@ export default {
   },
   data() {
     return {
-      selected: {},
-      allSelectedStatus: 0, // 0 - unchecked, 1 - indeterminate, 2 - checked
-      rows: generateFakeDataRows(10000),
+      selected: new Set(),
+      selectAllElement: null,
+      rows: Object.freeze(generateFakeDataRows(10000)),
     };
   },
   // we do update with watch to avoid extra column redraw with reactive computed update
   watch: {
     isAllSelected(newV, oldV) {
       if (newV !== oldV) {
-        this.allSelectedStatus = newV;
+        if (this.selectAllElement) {
+          // 0 - unchecked, 1 - indeterminate, 2 - checked
+          this.selectAllElement.indeterminate = newV === 1;
+          this.selectAllElement.checked = newV > 1 || undefined;
+        }
       }
     },
   },
   computed: {
     // monitor selected changes
     isAllSelected() {
-      const selected = Object.keys(this.selected).length;
+      const selected = this.selected.size;
       if (selected === this.rows.length) {
         return 2;
       }
@@ -63,15 +67,12 @@ export default {
     },
     columns() {
       // if select all status changed redraw columns
-      const status = this.allSelectedStatus;
       const columnTemplate = (h) => {
         let inputVNode = h("input", {
           type: "checkbox",
-          indeterminate: status === 1,
-          checked: status > 1 || undefined,
+          ref: (el) => { this.selectAllElement = el },
           onChange: (e) => {
             this.selectAll(e.target.checked);
-            // this.doChange(inputVNode, e.target.checked);
           },
         });
         return [inputVNode, "Select all"];
@@ -98,23 +99,24 @@ export default {
   methods: {
     // select all checkbox click
     selectAll(ckecked = false) {
-      this.rows.forEach((r) => this.updateSelectedRow(r, ckecked));
-      this.selected = { ...this.selected };
+      this.rows.forEach((r) => this.updateSelectedRow(r, ckecked, this.selected));
+      this.selected = new Set(this.selected);
       this.rows = [...this.rows];
     },
     // regular row checkbox click
     selectSingle(row, checked) {
-      this.updateSelectedRow(row, checked);
-      this.selected = { ...this.selected };
+      this.updateSelectedRow(row, checked, this.selected);
+      this.selected = new Set(this.selected);
     },
     // internal update method
-    updateSelectedRow(row, checked) {
+    updateSelectedRow(row, checked, selected) {
       row.selected = checked;
       if (checked) {
-        this.selected[row.id] = true;
+        selected.add(row.id);
       } else {
-        delete this.selected[row.id];
+        selected.delete(row.id);
       }
+      return selected;
     },
     // we need it to trigger vNode update, in other case DOM update will not be triggered for this node
     doChange(vNode, isChecked) {
