@@ -5,24 +5,16 @@ const VueLoaderPlugin = require('vue-loader');
 
 module.exports = {
   mode: 'development',
-  entry: {
-    app: './demo/index.ts',
-  },
+  entry: './demo-wp/index.ts',
   devtool: 'inline-source-map',
   devServer: {
     port: 3332,
-  },
-  output: {
-    path: path.resolve(__dirname, '../distServe'),
-    filename: '[name].cjs',
-    libraryTarget: 'umd',
-    umdNamedDefine: true,
   },
   plugins: [
     new CleanWebpackPlugin({ cleanStaleWebpackAssets: false }),
     new HtmlWebpackPlugin({
       title: 'Development',
-      template: './demo/index.html',
+      template: './demo-wp/index.html',
       appMountId: 'app',
       exJs: [], // [ "dist/vgrid.js"],
     }),

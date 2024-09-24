@@ -21,6 +21,6 @@
       "@revolist/vue-datagrid": ["lib"]
     }
   },
-  "include": ["types/jsx.d.ts", "lib"],
-  "exclude": ["node_modules"]
+  "include": ["types/jsx.d.ts", "lib", "/**/*.d.ts", "/**/*.ts"],
+  "exclude": ["node_modules", "demo"]
 }

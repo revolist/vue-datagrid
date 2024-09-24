@@ -65,7 +65,7 @@ export default class VueEditorAdapter implements EditorBase {
       el,
       editorData,
       addition
-    );
+    ) as Vue | undefined;
     if (!template) {
       return;
     }
