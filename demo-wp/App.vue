@@ -1,4 +1,6 @@
 <template>
+  <div>
+    <button @click="selectAll(true)">Select All</button>
   <v-grid
     class="list"
     theme="compact"
@@ -7,7 +9,9 @@
     hide-attribution
     :source="rows"
     :columns="columns"
+    @beforesourceset="beforeSourceChange"
   ></v-grid>
+</div>
 </template>
 
 <script>
@@ -97,6 +101,9 @@ export default {
     },
   },
   methods: {
+    beforeSourceChange(e) {
+      console.log("beforeSourceChange", e.detail);
+    },
     // select all checkbox click
     selectAll(ckecked = false) {
       this.rows.forEach((r) => this.updateSelectedRow(r, ckecked, this.selected));
