@@ -22,5 +22,5 @@
     }
   },
   "include": ["types/jsx.d.ts", "lib", "/**/*.d.ts", "/**/*.ts"],
-  "exclude": ["node_modules", "demo"]
+  "exclude": ["node_modules", "demo", "demo-wp"]
 }

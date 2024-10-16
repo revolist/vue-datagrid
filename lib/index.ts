@@ -1,7 +1,7 @@
 import { RevoGrid } from './revogrid';
 import { defineCustomElements } from '@revolist/revogrid/loader';
-export { Template as VGridVueTemplate, VGridVueTemplateConstructor } from './renderer';
-export { Editor as VGridVueEditor } from './editor';
+export { Template as VGridVueTemplate, Template, VGridVueTemplateConstructor } from './renderer';
+export { Editor as VGridVueEditor, Editor } from './editor';
 export { type EditorType } from './editor.adapter';
 export * from '@revolist/revogrid';
 
