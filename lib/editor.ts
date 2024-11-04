@@ -1,5 +1,5 @@
 import { VueConstructor } from 'vue';
-import { ColumnDataSchemaModel, EditorCtr, SaveData } from '@revolist/revogrid';
+import type { ColumnDataSchemaModel, EditorCtr } from '@revolist/revogrid';
 import VueEditorAdapter from './editor.adapter';
 
 /**
@@ -10,7 +10,7 @@ import VueEditorAdapter from './editor.adapter';
 export const Editor = (vueConstructor: VueConstructor): EditorCtr => {
   return function (
     column: ColumnDataSchemaModel,
-    save: (value: SaveData, preventFocus?: boolean) => void,
+    save: (value: any, preventFocus?: boolean) => void,
     close: (focusNext?: boolean) => void
   ) {
     return new VueEditorAdapter(vueConstructor, column, save, close);

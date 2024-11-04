@@ -5,7 +5,6 @@ import {
   EditCell,
   EditorBase,
   HyperFunc,
-  SaveData,
   VNode,
 } from '@revolist/revogrid';
 
@@ -14,7 +13,7 @@ import {
  */
 export type EditorType = {
   column: ColumnDataSchemaModel;
-  save: (value: SaveData, preventFocus?: boolean) => void;
+  save: (value: any, preventFocus?: boolean) => void;
   close: (focusNext?: boolean) => void;
 } & Partial<EditCell>;
 
@@ -30,7 +29,7 @@ export default class VueEditorAdapter implements EditorBase {
   constructor(
     private VueEditorConstructor: VueConstructor,
     public column: ColumnDataSchemaModel,
-    private save: (value: SaveData, preventFocus?: boolean) => void,
+    private save: (value: any, preventFocus?: boolean) => void,
     private close: (focusNext?: boolean) => void
   ) {}
 
