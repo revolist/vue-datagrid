@@ -40,6 +40,7 @@ export const RevoGrid = /*@__PURE__*/ Vue.extend({
     rowClass: {} as PropOptions<Components.RevoGrid['rowClass']>,
     autoSizeColumn: {} as PropOptions<Components.RevoGrid['autoSizeColumn']>,
     filter: {} as PropOptions<Components.RevoGrid['filter']>,
+    sorting: {} as PropOptions<Components.RevoGrid['sorting']>,
     focusTemplate: {} as PropOptions<Components.RevoGrid['focusTemplate']>,
     canMoveColumns: {} as PropOptions<Components.RevoGrid['canMoveColumns']>,
     trimmedRows: {} as PropOptions<Components.RevoGrid['trimmedRows']>,
@@ -81,6 +82,6 @@ export const RevoGrid = /*@__PURE__*/ Vue.extend({
     getSelectedRange: createCommonMethod('getSelectedRange') as Components.RevoGrid['getSelectedRange'],
     refreshExtraElements: createCommonMethod('refreshExtraElements') as Components.RevoGrid['refreshExtraElements'],
   },
-  render: createCommonRender('revo-grid', ['contentsizechanged', 'beforeedit', 'beforerangeedit', 'afteredit', 'beforeautofill', 'beforerange', 'afterfocus', 'roworderchanged', 'beforesortingapply', 'beforesorting', 'rowdragstart', 'headerclick', 'beforecellfocus', 'beforefocuslost', 'beforesourceset', 'beforeanysource', 'aftersourceset', 'afteranysource', 'beforecolumnsset', 'beforecolumnapplied', 'aftercolumnsset', 'beforefilterapply', 'beforefiltertrimmed', 'beforetrimmed', 'aftertrimmed', 'viewportscroll', 'beforeexport', 'beforeeditstart', 'aftercolumnresize', 'beforerowdefinition', 'filterconfigchanged', 'rowheaderschanged', 'beforegridrender', 'aftergridrender', 'aftergridinit', 'additionaldatachanged', 'afterthemechanged', 'created']),
+  render: createCommonRender('revo-grid', ['contentsizechanged', 'beforeedit', 'beforerangeedit', 'afteredit', 'beforeautofill', 'beforerange', 'afterfocus', 'roworderchanged', 'beforesortingapply', 'beforesorting', 'rowdragstart', 'headerclick', 'beforecellfocus', 'beforefocuslost', 'beforesourceset', 'beforeanysource', 'aftersourceset', 'afteranysource', 'beforecolumnsset', 'beforecolumnapplied', 'aftercolumnsset', 'beforefilterapply', 'beforefiltertrimmed', 'beforetrimmed', 'aftertrimmed', 'viewportscroll', 'beforeexport', 'beforeeditstart', 'aftercolumnresize', 'beforerowdefinition', 'filterconfigchanged', 'sortingconfigchanged', 'rowheaderschanged', 'beforegridrender', 'aftergridrender', 'aftergridinit', 'additionaldatachanged', 'afterthemechanged', 'created']),
 });
 
