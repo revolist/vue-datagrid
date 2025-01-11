@@ -1,7 +1,7 @@
 {
   "name": "lib-test",
   "description": "Demo lib test",
-  "version": "4.11.8",
+  "version": "4.11.11",
   "private": true,
   "scripts": {
     "dev": "vite"
