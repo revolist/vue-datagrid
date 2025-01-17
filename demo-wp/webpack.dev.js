@@ -2,11 +2,11 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const VueLoaderPlugin = require('vue-loader');
-
+console.log(path.resolve(__dirname, '../tsconfig.json'))
 module.exports = {
   mode: 'development',
   entry: {
-    app: './index.ts'
+    app: path.resolve(__dirname, './index.ts')
   },
   devtool: 'inline-source-map',
   devServer: {
@@ -46,6 +46,7 @@ module.exports = {
         loader: 'ts-loader',
         options: {
           appendTsSuffixTo: [/\.vue$/],
+          configFile: path.resolve(__dirname, '../tsconfig.json'), // Specify the path to tsconfig.json
         },
         exclude: /node_modules/,
       },

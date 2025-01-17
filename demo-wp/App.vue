@@ -1,7 +1,7 @@
 <template>
   <div>
     <button @click="selectAll(true)">Select All</button>
-  <v-grid
+  <RevoGrid
     class="list"
     theme="compact"
     resize="false"
@@ -10,12 +10,12 @@
     :source="rows"
     :columns="columns"
     @beforesourceset="beforeSourceChange"
-  ></v-grid>
+  />
 </div>
 </template>
 
 <script>
-import VGrid from "@revolist/vue-datagrid";
+import RevoGrid from "@revolist/vue-datagrid";
 
 // mock data
 function generateFakeDataRows(rowsNumber) {
@@ -36,7 +36,7 @@ function generateFakeDataRows(rowsNumber) {
 export default {
   name: "App",
   components: {
-    VGrid,
+    RevoGrid,
   },
   data() {
     return {

@@ -17,7 +17,7 @@
   ],
   "scripts": {
     "build": "webpack --config ./.webpack/webpack.config.js",
-    "dev": "webpack serve --config ./.webpack/webpack.dev.js",
+    "dev": "cd demo-wp/ && npx webpack serve --config ./webpack.dev.js",
     "release": "npm run build && npm publish --public --tag pre-release"
   },
   "keywords": [
