@@ -1,148 +1,162 @@
 <template>
-  <Grid
-      :additionalData="{
-        // pass vue instance to grid component to use it in cells templates, provide/inject/$store/$router etc
-        // @ts-ignore
-        vue: this
-      }"
-      :row-definitions="rowDefinitions"
-      :stretch="false"
-      :row-headers="rowHeaders"
-      :source="source"
-      :columns="headers"
-      :editors="gridEditors"
-    />
+  <div>
+    <button @click="selectAll(true)">Select All</button>
+  <RevoGrid
+    class="list"
+    theme="compact"
+    resize="false"
+    readonly="true"
+    hide-attribution
+    :source="rows"
+    :columns="columns"
+    @beforesourceset="beforeSourceChange"
+  />
+</div>
 </template>
 
-<script lang="ts">
-import Vue from 'vue';
-import Cell from './Cell.vue';
-import Grid, { VGridVueTemplate, VGridVueEditor } from '@revolist/vue-datagrid';
+<script>
+import RevoGrid from "@revolist/vue-datagrid";
 
-/**
- * Creates a new vue editor
- */
-const NewEditor = Vue.extend({
-  props: ['rowIndex', 'model', 'save', 'close'],
-  render(h) {
-    return h(
-      'button',
-      {
-        on: {
-          click: (e: MouseEvent) => {
-            e.stopPropagation();
-            this.close();
-          },
-        },
-      },
-      'I am editor #' + this.rowIndex,
-    );
-  },
-});
-
-/**
- * Generates header title based on index
- */
-function generateHeader(index: number) {
-  const asciiFirstLetter = 65;
-  const lettersCount = 26;
-  let div = index + 1;
-  let label = '';
-  let pos: number;
-  while (div > 0) {
-    pos = (div - 1) % lettersCount;
-    label = String.fromCharCode(asciiFirstLetter + pos) + label;
-    div = parseInt(((div - pos) / lettersCount).toString(), 10);
-  }
-  return label.toLowerCase();
-}
-
-function generateFakeDataObject(rowsNumber: number, colsNumber: number) {
-  const result: Record<any, any> = [];
-  const columns: Record<number, any> = {};
-  const all = colsNumber * rowsNumber;
+// mock data
+function generateFakeDataRows(rowsNumber) {
+  const result = [];
+  const all = rowsNumber;
   for (let j = 0; j < all; j++) {
-    let col = j % colsNumber;
-    let row = (j / colsNumber) | 0;
+    let row = j;
     if (!result[row]) {
       result[row] = {
-        readonly: true,
+        id: row,
       };
     }
-    if (!columns[col]) {
-      columns[col] = {
-        name: generateHeader(col),
-        prop: col,
-      };
-      if (col === 0) {
-        columns[col].rowDrag = true;
-        columns[col].editor = 'button';
-        /**
-         * This is how you can override default cell template with your own Vue component @file Cell.vue
-         */
-
-    // @ts-ignore
-        columns[col].cellTemplate = VGridVueTemplate(Cell, {
-          customPropSample: 1,
-        });
-      }
-    }
-    result[row]['key'] = 'key';
-    result[row][col] = row + ':' + col;
+    result[row]["myRow"] = `I am row ${row}`;
   }
-  let headers = Object.keys(columns).map((k) => columns[parseInt(k, 10)]);
-  return {
-    source: result,
-    headers,
-  };
+  return result;
 }
 
-/**
- * Main app component
- */
-export default Vue.extend({
+export default {
+  name: "App",
+  components: {
+    RevoGrid,
+  },
   data() {
-    // @ts-ignore
-    const editor = VGridVueEditor(NewEditor);
     return {
-      ...generateFakeDataObject(40, 2),
-      rowDefinitions: [{ type: "rgRow", index: 0, size: 145 }],
-      gridEditors: { button: editor },
-      rowHeaders: {
-        size: 100,
-        // Sample row header template
-        cellTemplate: (_: Function, { rowIndex }: { rowIndex: number }) => {
-          return rowIndex;
-        },
-      },
+      selected: new Set(),
+      selectAllElement: null,
+      rows: Object.freeze(generateFakeDataRows(10000)),
     };
   },
-  components: {
-    Grid,
+  // we do update with watch to avoid extra column redraw with reactive computed update
+  watch: {
+    isAllSelected(newV, oldV) {
+      if (newV !== oldV) {
+        if (this.selectAllElement) {
+          // 0 - unchecked, 1 - indeterminate, 2 - checked
+          this.selectAllElement.indeterminate = newV === 1;
+          this.selectAllElement.checked = newV > 1 || undefined;
+        }
+      }
+    },
   },
-});
+  computed: {
+    // monitor selected changes
+    isAllSelected() {
+      const selected = this.selected.size;
+      if (selected === this.rows.length) {
+        return 2;
+      }
+      if (selected) {
+        return 1;
+      }
+      return 0;
+    },
+    columns() {
+      // if select all status changed redraw columns
+      const columnTemplate = (h) => {
+        let inputVNode = h("input", {
+          type: "checkbox",
+          ref: (el) => { this.selectAllElement = el },
+          onChange: (e) => {
+            this.selectAll(e.target.checked);
+          },
+        });
+        return [inputVNode, "Select all"];
+      };
+
+      const cellTemplate = (h, { model, prop }) => {
+        let inputVNode = h("input", {
+          type: "checkbox",
+          checked: model.selected || undefined,
+          onChange: (e) => this.selectSingle(model, e.target.checked),
+        });
+        return h("label", undefined, inputVNode, model[prop]);
+      };
+      return [
+        {
+          prop: "myRow",
+          columnTemplate,
+          cellTemplate,
+          size: 400,
+        },
+      ];
+    },
+  },
+  methods: {
+    beforeSourceChange(e) {
+      console.log("beforeSourceChange", e.detail);
+    },
+    // select all checkbox click
+    selectAll(ckecked = false) {
+      this.rows.forEach((r) => this.updateSelectedRow(r, ckecked, this.selected));
+      this.selected = new Set(this.selected);
+      this.rows = [...this.rows];
+    },
+    // regular row checkbox click
+    selectSingle(row, checked) {
+      this.updateSelectedRow(row, checked, this.selected);
+      this.selected = new Set(this.selected);
+    },
+    // internal update method
+    updateSelectedRow(row, checked, selected) {
+      row.selected = checked;
+      if (checked) {
+        selected.add(row.id);
+      } else {
+        selected.delete(row.id);
+      }
+      return selected;
+    },
+    // we need it to trigger vNode update, in other case DOM update will not be triggered for this node
+    doChange(vNode, isChecked) {
+      if (vNode) {
+        vNode.$attrs$.checked = isChecked;
+      }
+    },
+  },
+};
 </script>
 
 <style lang="scss">
-body,
-html {
+html,
+body {
   height: 100%;
-  width: 100%;
   padding: 0;
   margin: 0;
-  overflow: hidden;
-  background-color: #f7f9fc;
-  text-align: center;
 }
-
-revo-grid {
-  display: block;
+.list .row,
+.header-row {
+  display: flex;
 }
-
-.arrow-down svg {
-  opacity: 1;
-  width: 10px;
-  height: 10px;
+.list .row .data-cell,
+.data-header-cell {
+  position: relative !important;
+  width: auto !important;
 }
-
+revogr-focus,
+.selection-border-range,
+.edit-input-wrapper {
+  width: 100% !important;
+}
+input[type="checkbox"] {
+  margin-right: 10px;
+}
 </style>

@@ -3,6 +3,7 @@
   "description": "Demo lib test",
   "version": "4.11.12",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "vite"
   },
