@@ -1,6 +1,6 @@
-### 🚨 Repository Notice 🚨
+### 🚨 Repository Notice
 
-This repo is read-only and will be **deprecated** in v5+ in favor of monorepos. Post issues [here](https://github.com/revolist/revogrid). Happy coding! 🖥️💻
+Post new issues [here](https://github.com/revolist/revogrid). Happy coding! 💻
 
 ---
 
@@ -13,8 +13,9 @@ This repo is read-only and will be **deprecated** in v5+ in favor of monorepos. 
 <p align="center">
   <a href="https://www.npmjs.com/package/@revolist/revogrid"><img src="https://img.shields.io/npm/v/@revolist/revogrid" alt="Latest Version on NPM"/></a>
   <a href="https://github.com/revolist/revogrid/blob/master/LICENSE"><img src="https://img.shields.io/npm/l/@revolist/revogrid" alt="Software License"/></a>
-  <img src="https://badgen.net/bundlephobia/dependency-count/@revolist/revogrid@latest" alt="Tree shaking"/>
-  <img src="https://badgen.net/bundlephobia/tree-shaking/@revolist/revogrid@latest" alt="Tree shaking"/>
+  <img src="https://badgen.net/bundlephobia/dependency-count/@revolist/revogrid" alt="Dependency count"/>
+  <img src="https://badgen.net/bundlephobia/tree-shaking/@revolist/revogrid" alt="Tree shaking"/>
+  <img src="https://img.shields.io/bundlephobia/min/@revolist/revogrid" alt="Bundle size"/>
   <img src="https://sonarcloud.io/api/project_badges/measure?project=revolist_revogrid&metric=alert_status" alt="Sonar Quality Gate"/>
 </p>
 
@@ -58,6 +59,8 @@ Support Millions of cells and thousands of columns easy and efficiently for fast
 - **Virtual Scroll**: Handles large datasets with infinite scroll.
 
 - **Formula Support**: Evaluate formulas in cell data.
+
+- **Master Detail/Subtables/Forms**: Expand rows to reveal child data.
 
 - **Drag and Drop**: Drag and drop in rows and columns.
 
@@ -197,11 +200,11 @@ export default {
 
 -   Redesigned type support:
         - Removed deprecated namespaces:
-            - **Before**: `RevoGrid.ColumnDataSchemaRegular`
-            - **Now**: `ColumnDataSchemaRegular`;
+            - **Before**: `RevoGrid.ColumnRegular`
+            - **Now**: `ColumnRegular`;
         - Improved type import:
             - **Before**: `import { RevoGrid } from '@revolist/revogrid/dist/types/interfaces'`
-            - **Now**: `import { ColumnDataSchemaRegular } from '@revolist/revogrid'`.
+            - **Now**: `import { ColumnRegular } from '@revolist/revogrid'`.
         - Changed viewport type names everywhere. For example, before: `rowDefinitions: [{ type: "row", index: 0, size: 145 }]`, after: `rowDefinitions: [{ type: "rgRow", index: 0, size: 145 }]`.
     -   Updated [event](https://rv-grid.com/guide/api/revoGrid.html#Events) naming convention. Review your [event](https://rv-grid.com/guide/api/revoGrid.html#Events) usage. [Event names](https://rv-grid.com/guide/api/revoGrid.html#Events) are all lowercase now and are aligned with modern event naming conventions. For example, `afterEdit` -> `afteredit`.
     - Multiple event breaking changes introduced: beforerowrender now returns `BeforeRowRenderEvent`. Check all events for details.
@@ -223,33 +226,28 @@ export default {
 
 ## Our Sponsors
 
-We would like to extend our heartfelt gratitude to our sponsors for their generous support. Their contributions help us maintain and develop RevoGrid, ensuring continuous improvements and updates.
+We would like to extend our heartfelt gratitude to our sponsors for their generous support. Their contributions help us maintain and develop RevoGrid.
 
 [![Altruistiq](https://cdn.prod.website-files.com/62cd69e08130a1a33f5ef900/6310b4d500e971695db5e9c3_615b5db69ce8931a276e5ed2_Social_Icons_AQ_3_32x32.png)](https://altruistiq.com)
 
 
 ### Become a Sponsor
 
-If you or your company would like to support the ongoing development of RevoGrid, please consider becoming a sponsor or use or [Pro version](https://rv-grid.com/pro/). Your support will help us continue to improve the project and provide the best possible tool for the community.
-
-[![Sponsor Us](https://img.shields.io/badge/Sponsor%20Us-%F0%9F%92%96-brightgreen)](https://opencollective.com/revogrid)
+If you or your company would like to support the ongoing development of RevoGrid, please consider [![Sponsor Us](https://img.shields.io/badge/Sponsor%20Us-%F0%9F%92%96-brightgreen)](https://opencollective.com/revogrid) or use a [Pro version](https://rv-grid.com/pro/). Your support will help us continue to improve the project and provide the best possible tool for the community.
 
 Thank you for supporting RevoGrid! 🙏
 
+
 ## Contributing
 
-We invite you to join our vibrant community and contribute to the growth and success of RevoGrid. By getting involved, you'll have the opportunity to enhance your skills, gain valuable experience, and make a significant impact on an innovative project.
+By getting involved, you'll have the opportunity to enhance your skills, gain valuable experience, and make a significant impact on an innovative project. Your contribution, no matter how big or small, is valuable.
 
 ### Why Contribute?
 
-- **Expand Your Knowledge**: Working on RevoGrid allows you to dive deep into modern web technologies, improve your coding skills, and learn best practices in performance optimization, data handling, and component-based architecture.
-- **Valuable Experience**: Contributing to an open-source project like RevoGrid provides you with practical experience that can be a great addition to your portfolio. It demonstrates your ability to work collaboratively, solve complex problems, and contribute to a project's success.
-- **Professional Growth**: By contributing, you become part of a network of talented developers. This can lead to mentorship opportunities, collaborations, and professional connections that can benefit your career.
-- **Make a Difference**: Your contributions can help improve RevoGrid, making it more powerful and user-friendly for developers around the world. Your input can shape the future of the project and drive innovation.
+- **Expand Your Knowledge**: Working on complex libraries allows you to dive deep into modern web technologies, improve your coding skills, and learn best practices in performance optimization, data handling, and component-based architecture.
+- **Experience**: Contributing to an open-source project like provides you with practical experience that can be a great addition to your portfolio. It demonstrates your ability to work collaboratively, solve complex problems, and contribute to a project's success.
+- **Professional Growth**: By contributing, you become part of a network of talented developers. This can lead to mentorship opportunities, collaborations, and professional connections that can benefit your career. 
 
-### Join Us
-
-Your contribution, no matter how big or small, is valuable. By working on RevoGrid, you'll be part of an exciting project that's making a difference in the world of data grids. Join us today and let's build something amazing together!
 
 ## License
 
