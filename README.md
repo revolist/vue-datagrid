@@ -1,12 +1,8 @@
-### 🚨 Repository Notice
-
-Post new issues [here](https://github.com/revolist/revogrid). Happy coding! 💻
-
----
+# Vue 2 Data Grid
 
 <p align="center">
   <a href="https://rv-grid.com">
-    <img src="./assets/logo.svg" alt="RevoGrid Data Grid" height="150" />
+    <img src="./assets/logo.svg" alt="Vue 2 Data Grid" height="150" />
   </a>
 </p>
 
@@ -19,12 +15,10 @@ Post new issues [here](https://github.com/revolist/revogrid). Happy coding! 💻
   <img src="https://sonarcloud.io/api/project_badges/measure?project=revolist_revogrid&metric=alert_status" alt="Sonar Quality Gate"/>
 </p>
 
-#
 
-<h3 align="center">Powerful data grid component built with <a href="https://stenciljs.com" target="_blank">StencilJS</a>.</h3>
+<h3 align="center">Powerful Vue 2 Data Grid component built on top of <a href="https://github.com/revolist/revogrid" target="_blank">RevoGrid</a>.</h3>
 <p align="center">
 Support Millions of cells and thousands of columns easy and efficiently for fast data rendering. Easy to use.
-  
 </p>
 
 <p align="center">
@@ -114,6 +108,10 @@ Support Millions of cells and thousands of columns easy and efficiently for fast
   - [Row header template](https://rv-grid.com/guide/row/headers).
   - [Cell properties](https://rv-grid.com/guide/cell/) (define custom properties for rendered cells).
 
+
+> ⚠️ **Note**: Repository Notice: This repo is read-only. Create new issues at the [revogrid repo](https://github.com/revolist/revogrid)
+
+
   - [Cell template](https://rv-grid.com/guide/vue2/renderer) (create your own cell views).
   - [Cell editor](https://rv-grid.com/guide/vue2/editor) (use predefined or apply your own custom editors and cell types).
 
@@ -180,6 +178,12 @@ export default {
 
 
 [Example and guide](https://rv-grid.com/guide/vue2/)
+
+- [![VueJs](./assets/vuejs.svg) Vue 3](https://rv-grid.com/guide/vue3/) and [Vue 2](https://rv-grid.com/guide/vue2/)
+- [![React](./assets/react.svg) React](https://rv-grid.com/guide/react/)
+- [![Angular](./assets/angular.svg) Angular](https://rv-grid.com/guide/angular/)
+- [![Svelte](./assets/svelte.svg) Svelte](https://rv-grid.com/guide/svelte/)
+- [![JavaScript](./assets/js.svg) JavaScript](https://rv-grid.com/guide/)
 
 ## Versions
 
