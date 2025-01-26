@@ -119,6 +119,9 @@ Support Millions of cells and thousands of columns easy and efficiently for fast
 
 - **Rich API & Additional Improvements**: Explore hundreds of other small customizations and improvements in [RevoGrid](https://rv-grid.com/).
 
+> [!TIP]
+> For Vue 3, use [this repo](https://github.com/revolist/vue3-datagrid)
+
 ### Usage Vue 2
 
 With NPM:
