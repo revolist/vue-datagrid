@@ -54,6 +54,7 @@ export const RevoGrid = /*@__PURE__*/ Vue.extend({
     jobsBeforeRender: {} as PropOptions<Components.RevoGrid['jobsBeforeRender']>,
     registerVNode: {} as PropOptions<Components.RevoGrid['registerVNode']>,
     accessible: {} as PropOptions<Components.RevoGrid['accessible']>,
+    rtl: {} as PropOptions<Components.RevoGrid['rtl']>,
     canDrag: {} as PropOptions<Components.RevoGrid['canDrag']>,
   },
 
