@@ -67,7 +67,7 @@
     "@stencil/core": "^4.24.0",
     "sass": "^1.79.3",
     "typescript": "^5.0.4",
-    "vite": "^4.0.0",
+    "vite": "^5.4.20",
     "vite-plugin-dts": "^3.9.1",
     "vite-plugin-vue2": "^2.0.3",
     "vue-template-compiler": "^2.6.14",
