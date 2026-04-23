@@ -43,3 +43,34 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           npm_token: ${{ secrets.NPM_TOKEN }}
+
+  sbom:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Generate SBOM (SPDX)
+        uses: anchore/sbom-action@v0
+        with:
+          path: .
+          format: spdx-json
+          output-file: sbom.spdx.json
+          upload-artifact: false
+      - name: Generate SBOM (CycloneDX)
+        uses: anchore/sbom-action@v0
+        with:
+          path: .
+          format: cyclonedx-json
+          output-file: sbom.cdx.json
+          upload-artifact: false
+      - name: Upload SBOM to release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          VERSION=$(node -p "require('./package.json').version")
+          TAG="v${VERSION}"
+          if gh release view "$TAG" > /dev/null 2>&1; then
+            gh release upload "$TAG" sbom.spdx.json sbom.cdx.json --clobber
+          else
+            echo "No release found for $TAG, skipping SBOM upload"
+          fi
