@@ -1,6 +1,6 @@
 {
   "name": "@revolist/vue-datagrid",
-  "version": "4.20.2",
+  "version": "4.21.11",
   "description": "Vue 2 DataGrid Spreadsheet component with native Vue 2 render support",
   "types": "./dist/index.d.ts",
   "type": "module",
@@ -61,13 +61,13 @@
   "homepage": "https://github.com/revolist/revogrid#readme",
   "license": "MIT",
   "dependencies": {
-    "@revolist/revogrid": "4.20.2"
+    "@revolist/revogrid": "4.21.11"
   },
   "devDependencies": {
-    "@stencil/core": "^4.24.0",
+    "@stencil/core": "^4.43.2",
     "sass": "^1.79.3",
     "typescript": "^5.0.4",
-    "vite": "^5.4.21",
+    "vite": "^4.5.14",
     "vite-plugin-dts": "^3.9.1",
     "vite-plugin-vue2": "^2.0.3",
     "vue-template-compiler": "^2.6.14",
