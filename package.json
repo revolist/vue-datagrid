@@ -68,7 +68,7 @@
     "sass": "^1.79.3",
     "typescript": "^5.0.4",
     "vite": "^6.4.2",
-    "vite-plugin-dts": "^3.9.1",
+    "vite-plugin-dts": "^5.0.1",
     "vite-plugin-vue2": "^2.0.3",
     "vue-template-compiler": "^2.6.14",
     "vue": "=2.6.14"
