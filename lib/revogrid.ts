@@ -50,6 +50,7 @@ export const RevoGrid = /*@__PURE__*/ Vue.extend({
     stretch: {} as PropOptions<Components.RevoGrid['stretch']>,
     additionalData: {} as PropOptions<Components.RevoGrid['additionalData']>,
     disableVirtualX: {} as PropOptions<Components.RevoGrid['disableVirtualX']>,
+    virtualX: {} as PropOptions<Components.RevoGrid['virtualX']>,
     disableVirtualY: {} as PropOptions<Components.RevoGrid['disableVirtualY']>,
     hideAttribution: {} as PropOptions<Components.RevoGrid['hideAttribution']>,
     jobsBeforeRender: {} as PropOptions<Components.RevoGrid['jobsBeforeRender']>,
