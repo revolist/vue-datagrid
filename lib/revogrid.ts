@@ -38,6 +38,7 @@ export const RevoGrid = /*@__PURE__*/ Vue.extend({
     plugins: {} as PropOptions<Components.RevoGrid['plugins']>,
     columnTypes: {} as PropOptions<Components.RevoGrid['columnTypes']>,
     theme: {} as PropOptions<Components.RevoGrid['theme']>,
+    themeDefinitions: {} as PropOptions<Components.RevoGrid['themeDefinitions']>,
     rowClass: {} as PropOptions<Components.RevoGrid['rowClass']>,
     autoSizeColumn: {} as PropOptions<Components.RevoGrid['autoSizeColumn']>,
     filter: {} as PropOptions<Components.RevoGrid['filter']>,
