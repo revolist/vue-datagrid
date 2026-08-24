@@ -25,6 +25,7 @@ export const RevoGrid = /*@__PURE__*/ Vue.extend({
     range: {} as PropOptions<Components.RevoGrid['range']>,
     readonly: {} as PropOptions<Components.RevoGrid['readonly']>,
     resize: {} as PropOptions<Components.RevoGrid['resize']>,
+    resizeRow: {} as PropOptions<Components.RevoGrid['resizeRow']>,
     noHorizontalScrollTransfer: {} as PropOptions<Components.RevoGrid['noHorizontalScrollTransfer']>,
     canFocus: {} as PropOptions<Components.RevoGrid['canFocus']>,
     useClipboard: {} as PropOptions<Components.RevoGrid['useClipboard']>,
