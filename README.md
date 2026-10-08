@@ -9,21 +9,29 @@
 <p align="center">
   <a href="https://www.npmjs.com/package/@revolist/revogrid"><img src="https://img.shields.io/npm/v/@revolist/revogrid" alt="Latest Version on NPM"/></a>
   <a href="https://github.com/revolist/revogrid/blob/master/LICENSE"><img src="https://img.shields.io/npm/l/@revolist/revogrid" alt="Software License"/></a>
-  <img src="https://badgen.net/bundlephobia/dependency-count/@revolist/revogrid" alt="Dependency count"/>
-  <img src="https://badgen.net/bundlephobia/tree-shaking/@revolist/revogrid" alt="Tree shaking"/>
-  <img src="https://img.shields.io/bundlephobia/min/@revolist/revogrid" alt="Bundle size"/>
+  <a href="https://www.npmjs.com/package/@revolist/revogrid"><img src="https://img.shields.io/npm/dm/@revolist/revogrid" alt="NPM downloads per month"/></a>
   <img src="https://sonarcloud.io/api/project_badges/measure?project=revolist_revogrid&metric=alert_status" alt="Sonar Quality Gate"/>
+  <a href="https://github.com/revolist/revogrid/actions/workflows/unit.yml">
+        <img src="https://github.com/revolist/revogrid/actions/workflows/unit.yml/badge.svg" alt="Workflow status badge" loading="lazy" height="20">
+  </a>
+  <a href="https://github.com/revolist/revogrid/actions/workflows/e2e.yml">
+        <img src="https://github.com/revolist/revogrid/actions/workflows/e2e.yml/badge.svg" alt="Workflow status badge" loading="lazy" height="20">
+  </a>
 </p>
 
 
 <h3 align="center">Powerful Vue 2 Data Grid component built on top of <a href="https://github.com/revolist/revogrid" target="_blank">RevoGrid</a>.</h3>
 <p align="center">
-Support Millions of cells and thousands of columns easy and efficiently for fast data rendering. Easy to use.
+Render 1M+ rows, millions of cells, and thousands of columns efficiently with no hard row limit in the grid.
+</p>
+<p align="center">
+Used by some of the largest companies in Europe and the United States.
 </p>
 
 <p align="center">
   <a href="https://rv-grid.com/demo/">Demo and API</a> •
   <a href="#key-features">Key Features</a> •
+  <a href="#revogrid-pro-features">Pro Features</a> •
   <a href="#basic-usage">How To Use</a> •
   <a href="#installation">Installation</a> •
   <a href="https://rv-grid.com/guide/">Docs</a> •
@@ -37,20 +45,22 @@ Support Millions of cells and thousands of columns easy and efficiently for fast
 
 ## Key Features
 
-- **High Performance**: Handles millions of cells in the viewport with a powerful core built by default.
+- **High Performance**: Render 1M+ rows and millions of cells with no hard row limit in the grid. Virtualization keeps the DOM focused on the visible viewport.
 
 - **[Accessibility](https://rv-grid.com/guide/wcag)**: Follows WAI-ARIA best practices.
+
+- **[RTL Support](https://rv-grid.com/guide/rtl)**: Comprehensive Right-to-Left language support for Arabic, Hebrew, Persian, and other RTL languages. Features automatic column reordering, proper text alignment, and layout adjustments for RTL interfaces.
 
 - **[Keyboard Support](https://rv-grid.com/guide/defs#Keyboard)**:
   - Excel-like focus for efficient navigation and editing.
   - Seamless copy/paste from Excel, Google Sheets, or any other sheet format.
 
 
-- **Lightweight**: Minimal initial bundle size ![Min size](https://badgen.net/bundlephobia/min/@revolist/revogrid@latest). Can be imported with polyfills or as a module for modern browsers.
+- **Lightweight**: Minimal initial bundle size. Can be imported with polyfills or as a module for modern browsers.
 
 - **[Intelligent Virtual DOM](https://rv-grid.com/guide/overview#VNode-Reactive-DOM)**: Smart row recombination to minimize redraws.
 
-- **[Virtual Scroll](https://rv-grid.com/guide/viewports)**: Handles large datasets with infinite scroll.
+- **[Virtual Scroll](https://rv-grid.com/guide/viewports)**: Handles large datasets without rendering every row or column into the DOM.
 
 - **[Drag and Drop](https://rv-grid.com/guide/row/order)**: Drag and drop in [rows](https://rv-grid.com/guide/row/order) and [columns](https://rv-grid.com/guide/column/order).
 
@@ -66,11 +76,49 @@ Support Millions of cells and thousands of columns easy and efficiently for fast
   - Header filtering.
   - Custom filters to extend system filters with your own set.
 
-- **[Export](https://rv-grid.com/guide/export.plugin)**: Export data to file.
+  Blank filters preserve source-value identity and own-property presence. By default,
+  `null`, owned `undefined`, exactly `""`, and missing own properties are blank;
+  whitespace-only strings, `false`, `0`, `NaN`, arrays, and objects are not. The
+  policy can be configured at grid level and overridden field-by-field per column
+  with `blankSemantics`. Existing saved `empty` and `notEmpty` operator IDs remain
+  compatible and are labeled “Is blank” and “Is not blank.”
+
+  ```ts
+  const filter = {
+    blankSemantics: {
+      whitespaceOnlyString: true,
+      emptyArray: true,
+      isBlank(value, context, fallbackResult) {
+        return value === 'N/A' || fallbackResult;
+      },
+    },
+  };
+
+  const columns = [{
+    prop: 'tags',
+    filter: 'array',
+    // Partial column policy; other fields inherit the grid policy.
+    blankSemantics: { emptyArray: false },
+  }];
+  ```
+
+  An inherited property counts as missing. A `cellParser` supplies the value for
+  ordinary comparisons but does not replace the raw value used for blank checks.
+  The callback receives the source value, row model, column, property, parsed
+  value, own-property status, effective policy, and fallback result. “Is not
+  blank” is the exact inverse of the resolved blank predicate. Typed operators
+  remain strict; blank configuration never normalizes `false`, `0`, or arrays
+  into another source value.
+
+- **[Export](https://rv-grid.com/guide/export.plugin)**:
+  - **[CSV](https://rv-grid.com/guide/export.plugin)**: Built-in file export for core RevoGrid data workflows.
+  - **[PDF](https://rv-grid.com/guide/pdf-export)**: Browser-side PDF export with the lightweight [`@revolist/revogrid-pdf-export`](https://www.npmjs.com/package/@revolist/revogrid-pdf-export) plugin.
+  - **[Excel (Pro)](https://rv-grid.com/guide/data-grid-export-excel)**: Workbook export for RevoGrid Pro with layout, styles, frozen panes, merged cells, and formulas.
 
 - **Custom Sizes**: Define custom sizes for [columns](https://rv-grid.com/guide/column/#Column-Size) and [rows](https://rv-grid.com/guide/row/height). Automatic sizing based on content.
 
 - **[Column Resizing](https://rv-grid.com/guide/column/resize)**: Adjust column widths.
+- **[Row Resizing](https://rv-grid.com/guide/row/resize)**: Resize from row-header edges or enable full-row resize edges with optional height limits.
 - **Auto Size Columns**: Intelligent column width adjustment that automatically adapts to content, ensuring optimal readability and layout efficiency.
 
 - **Pinned/Sticky/Freezed Elements**:
@@ -103,20 +151,137 @@ Support Millions of cells and thousands of columns easy and efficiently for fast
 
 - **[Plugin System](https://rv-grid.com/guide/plugin/)**: Create custom plugins or extend existing ones easily.
 
-- **[Formula Support](https://rv-grid.com/guide/cell/formula)**: Evaluate formulas in cell data with Excel-like syntax, including basic arithmetic, statistical functions, and cell references.
-- **[Pivot Table](https://rv-grid.com/demo/pivot)**: Transform and analyze data dynamically with drag-and-drop field arrangement, aggregation functions, and interactive filtering capabilities.
-
-- **[Master Detail/Subtables/Forms](https://rv-grid.com/guide/row/master.pro)**: Expand rows to reveal child data.
-- **[Cell/Column/Row Span/Merge](https://rv-grid.com/guide/cell/merge)**: Merge cells to form groups.
-- **Auto Merge**: Automatically merges cells with identical values in a column.
-- **Form editig**: Edit forms directly within the grid, featuring all necessary fields, including custom options and markdown support for a fast and enhanced data entry experience.
-
 - **Customizations**:
   - [Column header template](https://rv-grid.com/guide/column/header.template).
   - [Row header template](https://rv-grid.com/guide/row/headers).
   - [Cell properties](https://rv-grid.com/guide/cell/) (define custom properties for rendered cells).
-  - Nested grids: Build a grid inside a grid, showcasing advanced editing options and user interactions for a more dynamic data presentation.
-  - Context Menu: Build context menus for any grid element - from cells to headers. Cut, copy, paste, add rows, modify columns, and more. Fully customizable with your own actions and behaviors.
+  - [Cell template](https://rv-grid.com/guide/cell/renderer) (create your own cell views).
+  - [Cell editor](https://rv-grid.com/guide/cell/editor) (use predefined or apply your own custom editors and cell types).
+
+- **[AI Agents and MCP](https://rv-grid.com/guide/mcp)**: Connect Codex, Cursor, Claude Code, and VS Code to version-aware RevoGrid docs, examples, migrations, feature availability, and typed API context.
+
+- **Rich API & Additional Improvements**: Explore hundreds of other small customizations and improvements in [RevoGrid](https://rv-grid.com/).
+
+
+## RevoGrid Pro Features
+
+RevoGrid Pro extends the core grid with production plugins for advanced data entry, analytics, layout, validation, remote data workflows, and enterprise planning.
+
+- **Advanced Data Structures**:
+  - **Hierarchical Data View**: Display tree data with expandable rows, nested relationships, sorting, filtering, editing, and drag-and-drop friendly hierarchy handling.
+  - **Row Transpose**: Flip records into a row-oriented view when users need to inspect one entity as a vertical form-like grid.
+
+- **Headers, Columns, and Grid Structure**:
+  - **Multi-Level Headers / Column Groups**: Build stacked, nested headers so related columns can sit under shared parent groups.
+  - **Multi-Row Headers**: Render more than one header row for dense tables, grouped labels, or spreadsheet-like header layouts.
+  - **Column Group Panel**: Let users drag columns into a grouping panel to create row groups interactively.
+  - **Column Group Render Sync**: Keep grouped header rendering aligned during column moves, resizing, and virtualization updates.
+  - **Column Move with Groups**: Move columns while preserving grouped header relationships and valid group boundaries.
+  - **Column Collapse & Expand (Drill Down)**: Collapse grouped columns to focus on summary information, then expand when details are needed.
+  - **Column Hide**: Hide and reveal columns to create focused views without mutating the underlying dataset.
+  - **Column Add Popup**: Provide a UI flow for adding columns from available field definitions.
+  - **Column Selection**: Select entire columns from the header for bulk operations, copying, formatting, or analysis.
+  - **Column Stretch**: Distribute column widths to fill available grid space while respecting sizing constraints.
+  - **Column Autosize**: Measure content and automatically adjust column widths for readability.
+  - **Merge Cells**: Merge cells across rows and columns for grouped labels, reports, or spreadsheet-style layouts.
+  - **Auto Merge / Same-Value Merge**: Automatically merge neighboring cells with matching values to reduce visual repetition.
+  - **Sticky Cells and Rows**: Keep important rows, cells, totals, labels, or action areas visible while scrolling.
+  - **Overlay Layers**: Push temporary UI layers above the grid for richer interactions without replacing the main grid.
+
+- **Remote Data and Large Dataset Workflows**:
+  - **Server Loading with Infinite Scroll**: Load remote data as users scroll, keeping memory and DOM usage controlled for large datasets.
+  - **Infinite Scroll**: Support total-based or dynamic scrolling patterns where rows are fetched and released in chunks.
+  - **Pagination**: Split large datasets into page-sized views with built-in navigation controls.
+  - **Remote Pagination**: Keep page index, page size, total counts, and server-loaded rows synchronized with the grid.
+  - **Server-Side Grouping**: Request grouped row blocks from a remote source, expand group paths on demand, and combine grouping with remote filtering, sorting, and export.
+
+- **Data Management and Change Tracking**:
+  - **Audit Trail History**: Record data-change history for traceability, review, and compliance-oriented workflows.
+  - **History**: Track user edits and provide undo/redo controls for grid changes.
+  - **History Controls**: Add ready-made UI controls for navigating undo and redo stacks.
+  - **Range Apply Preview**: Preview copy, paste, or fill changes before applying them to target cells.
+  - **Smart Auto Fill**: Fill ranges from an initial value, series, or pattern to speed repetitive data entry.
+  - **Excel Export/Import**: Export and import Excel workbook formats including `xlsx`, `xlsm`, `xlsb`, and `xls`.
+  - **Multi-Column Export Headers**: Preserve grouped and multi-level column headers when exporting structured grids.
+  - **Clipboard with JSON**: Copy and paste structured JSON/object values while keeping control over parsing and rendering.
+
+- **Selection and Range Operations**:
+  - **Multi-Range Selection**: Work with multiple selected ranges for spreadsheet-style copy, edit, and interaction flows.
+  - **Range Selection Limit**: Restrict selected ranges with configurable limits to protect performance and workflow rules.
+  - **Row Checkbox Selection**: Select rows through checkbox controls with bulk selection and keyboard-friendly behavior.
+  - **Row Advanced Drag and Drop**: Reorder rows with custom drag handles, multi-row behavior, and controlled drop handling.
+  - **Row Expand**: Add expandable row affordances for detail views, children, or custom row content.
+  - **Row Custom Heading**: Customize row header content for labels, actions, or contextual row information.
+
+- **Filtering, Search, and Grouping**:
+  - **Advanced Selection Filtering**: Filter with multi-condition selection controls for categorical data.
+  - **Selection Filter Cascade**: Cascade filters so each choice narrows available values in dependent filters.
+  - **Advanced Slider Filtering**: Filter numeric values with range sliders.
+  - **Header Input Filtering**: Put filter inputs in the header area for fast per-column search.
+  - **Date Filter**: Filter temporal data by date-specific conditions and ranges.
+  - **Row Grouping Drag and Drop**: Drag fields into a panel to group rows dynamically.
+  - **Grouping Aggregation**: Calculate grouped summaries such as sum, average, count, min, and max.
+  - **Server-Side Group Aggregation**: Combine remote grouped data with aggregate values returned by the server.
+
+- **Calculations and Formulas**:
+  - **Formula Engine**: Add Excel-like formulas with cell references, dynamic calculations, and a broad function set.
+  - **Formula Bar**: Give users a dedicated place to inspect and edit formulas.
+  - **Formula Name Manager**: Define reusable named references for formulas.
+  - **Formula Dependency Highlighting**: Highlight related cells so users can understand formula inputs and outputs.
+  - **Summary Header**: Render calculated summary values in header-level UI.
+
+- **Data Visualization and Cell Rendering**:
+  - **Charts in Cells**: Render compact visuals such as progress lines, progress lines with values, sparklines, bar charts, timelines, rating stars, badges, change indicators, thumbs, and pie charts.
+  - **Heat and Cold Maps**: Color-code values with gradients and legends so users can compare magnitude quickly.
+  - **Conditional Formatting**: Apply styling rules based on cell values, row data, or custom logic.
+  - **Multi-Cell Formatting**: Choose different renderers or editors inside the same column based on row-level conditions.
+  - **Cell Flash**: Highlight recently changed values so live updates are easy to spot.
+  - **Avatar, Badge, Progress, Rate, Link, and Chart Column Types**: Use ready-made renderers for common visual data patterns.
+  - **Array Renderer**: Display array-like values inside cells with a purpose-built renderer.
+  - **Buttons**: Add action buttons inside grid cells for row-level commands.
+
+- **Editing and Data Entry**:
+  - **Dynamic Form Editing**: Edit row data through a generated form with custom options and richer inputs.
+  - **Full Row Editing**: Edit multiple columns in a row as one coordinated editing flow.
+  - **Cell Checkbox Editors**: Use checkbox cells that act as both renderer and editor.
+  - **Cell Slider Editor**: Edit bounded numeric values with an inline slider.
+  - **Cell Counter Editor**: Adjust numeric values with plus/minus controls and configurable steps.
+  - **Textarea Editor**: Edit longer text values without leaving the grid.
+  - **Dropdown Editor**: Edit values through a dropdown or custom popup.
+  - **Timeline Editor**: Edit date ranges and timeline-like values with visual controls.
+  - **Cell Validation**: Highlight invalid cells and block or guide invalid edits with custom rules.
+  - **Input Validation**: Validate editor input before it is committed to the grid.
+
+- **User Interaction and UX**:
+  - **Context Menus**: Build menus for cells, rows, columns, and headers with actions such as cut, copy, paste, insert, delete, and custom commands.
+  - **Tooltips**: Show contextual information on hover for cells or custom grid elements.
+  - **Next Line Focus (WCAG)**: Move focus automatically to the next row during data entry workflows.
+  - **WCAG Helpers**: Improve keyboard and screen-reader-oriented grid workflows.
+  - **Cell Focus Helpers**: Extend focus behavior for custom editing and navigation scenarios.
+  - **Info Panel**: Show contextual status or helper information around grid interactions.
+  - **Loader**: Display loading state while remote data, exports, or long-running operations are in progress.
+
+- **Development and Integration**:
+  - **Event Manager**: Coordinate grid events through one managed layer for easier customization and cleanup.
+  - **Observable Props**: React to property changes and synchronize plugin state with grid configuration.
+  - **Plugin Dependencies**: Declare and resolve plugin relationships when features need to work together.
+  - **Dimension Animation**: Animate row and column dimension changes for smoother layout transitions.
+  - **Dropdown Infrastructure**: Reuse popup/dropdown services for custom editors and plugin UI.
+  - **Grid Presets and Utilities**: Compose reusable grid configurations, helper functions, and shared plugin behavior.
+
+- **Enterprise Analytics and Planning**:
+  - **Pivot Table**: Build multidimensional analytics with dynamic row, column, and value dimensions; built-in and custom aggregations; hierarchical rows; generated column groups; flat headers; grand totals and subtotals; values-on-rows layouts; row and column drill-down; grouped aggregate values; drag-and-drop configuration; compact field panel; server-side engine/store contracts; remote sorting and filtering; drilldown contracts; field registry validation; cache keys; serializable errors; and state save/load.
+  - **Pivot Configurator**: Give users a drag-and-drop UI for choosing Pivot rows, columns, values, filters, and field layout.
+  - **Gantt & Scheduling**: Plan projects with task, dependency, calendar, resource, assignment, and baseline models; summary tasks and milestones; WBS hierarchy; automatic scheduling; working calendars and holidays; constrained scheduling; dependency validation; FS, SS, FF, and SF dependencies with lead/lag; critical path and slack; baselines; resource filtering; task move, resize, create, and progress controls; indent/outdent; timeline zoom; highlighted ranges; non-working time shading; labels; and custom markers.
+  - **Gantt Toolbar**: Provide ready-made timeline navigation, baseline, critical path, and export actions for Gantt views.
+  - **Gantt Task Editor Dialog**: Edit task fields, dependencies, resources, and scheduling details in a structured dialog.
+
+- **Advanced Support**:
+  - **AI Agent Support**: Use Pro AI tooling to generate plugins, renderers, templates, and grid configurations.
+  - **RevoGrid MCP - AI-Native Grid Intelligence**: Connect AI coding tools to version-aware docs, examples, migrations, feature resolution, and typed API context.
+  - **Support via GitHub**: Get engineering support through GitHub-based workflows.
+  - **Support via Email**: Get direct support for Pro and enterprise implementation questions.
+
 
 
 > ⚠️ **Note**: Repository Notice: This repo is read-only. Create new issues at the [revogrid repo](https://github.com/revolist/revogrid)
@@ -193,7 +358,9 @@ export default {
 - [![React](./assets/react.svg) React](https://rv-grid.com/guide/react/)
 - [![Angular](./assets/angular.svg) Angular](https://rv-grid.com/guide/angular/)
 - [![Svelte](./assets/svelte.svg) Svelte](https://rv-grid.com/guide/svelte/)
+- [![Python](./assets/python.svg) Dash / Python](https://rv-grid.com/guide/dash/)
 - [![JavaScript](./assets/js.svg) JavaScript](https://rv-grid.com/guide/)
+
 
 ## Versions
 
@@ -249,6 +416,45 @@ We would like to extend our heartfelt gratitude to our sponsors for their genero
 If you or your company would like to support the ongoing development of RevoGrid, please consider [![Sponsor Us](https://img.shields.io/badge/Sponsor%20Us-%F0%9F%92%96-brightgreen)](https://opencollective.com/revogrid) or use a [Pro version](https://rv-grid.com/pro/). Your support will help us continue to improve the project and provide the best possible tool for the community.
 
 Thank you for supporting RevoGrid! 🙏
+
+
+## Testing
+
+[![Unit Tests](https://github.com/revolist/revogrid/actions/workflows/unit.yml/badge.svg?branch=main)](https://github.com/revolist/revogrid/actions/workflows/unit.yml)
+[![E2E Tests](https://github.com/revolist/revogrid/actions/workflows/e2e.yml/badge.svg?branch=main)](https://github.com/revolist/revogrid/actions/workflows/e2e.yml)
+
+RevoGrid is thoroughly tested to ensure reliability and stability.
+
+| Suite | Command | Scope |
+|---|---|---|
+| Unit | `npm run test` | Services, utilities, pure logic |
+| E2E (Playwright) | `npm run test:e2e` | Real browser rendering & interaction |
+
+### E2E Tests
+
+End-to-end tests use [@stencil/playwright](https://www.npmjs.com/package/@stencil/playwright) to run `<revo-grid>` in a real Chromium browser. The dev server starts automatically when you run:
+
+```bash
+npm run test:e2e
+```
+
+Test files live in `e2e/` and share helpers from `e2e/helpers.ts`:
+
+### Local startup troubleshooting
+
+For targeted local work, confirm a new or changed test is discoverable before starting the dev server:
+
+```bash
+./node_modules/.bin/playwright test e2e/pinning.spec.ts --grep "test name" --list
+```
+
+Then run a non-watch Stencil build to catch compile errors without invoking the Playwright web-server lifecycle:
+
+```bash
+./node_modules/.bin/stencil build --dev --serve --no-open
+```
+
+If Playwright fails before any tests run with a Stencil dev-server startup error such as `ERR_SOCKET_BAD_PORT` and port `65536`, treat it as an environment/startup issue rather than an e2e assertion failure. Check `node -v` and whether another local server is already using `localhost:3333`, then retry only after changing that environment state.
 
 
 ## Contributing
