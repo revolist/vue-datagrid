@@ -37,7 +37,7 @@ export const createCommonRender = (
 
 export const createCommonMethod = (methodName: string) =>
   function (this: any, ...args: any[]) {
-    return this.$refs.wc[methodName](...args);
+    this.$refs.wc[methodName](...args);
   } as unknown;
 
 export const toLowerCase = (str: string) => str.toLowerCase();
