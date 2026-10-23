@@ -10,7 +10,7 @@
   "dependencies": {
     "@stencil/core": "^4.18.1",
     "@vitejs/plugin-vue2": "^2.3.4",
-    "vite": "^6.4.2",
+    "vite": "^6.4.5",
     "vue": "^2.7.16"
   }
 }
