@@ -7,7 +7,7 @@ import { createVuePlugin as vuePlugin } from 'vite-plugin-vue2'
 export default defineConfig({
   plugins: [
     vuePlugin(),
-    dts({ rollupTypes: true, include: ['lib'] }),
+    dts({ processor: 'ts', rollupTypes: true, include: ['lib'] }),
   ],
   build: {
     copyPublicDir: false,
